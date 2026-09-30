@@ -1,0 +1,344 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bed5826c4e8a81e41941fad66a97195d, type: 3}
+  m_Name: LevelData_
+  m_EditorClassIdentifier: 
+  levels:
+  - levelPrefab: {fileID: 3327663121003907255, guid: 9f69cfe232f1a674f900326a8880a660, type: 3}
+    levelCompletionReward: 500
+    baseMoneyObjectiveTarget: 100
+    baseHarvestObjectiveTarget: 2
+    baseProduceObjectiveTarget: 1
+    availableItemTypes: 0000000001000000
+    minDifferentItemTypes: 1
+    maxDifferentItemTypes: 3
+    minAmountPerItem: 1
+    maxAmountPerItem: 3
+    inspectorObjectives:
+    - type: 0
+      itemType: 0
+      targetAmount: 40
+      currentAmount: 0
+    - type: 2
+      itemType: 1
+      targetAmount: 25
+      currentAmount: 0
+    - type: 1
+      itemType: 3
+      targetAmount: 5
+      currentAmount: 0
+    - type: 3
+      itemType: 3
+      targetAmount: 10
+      currentAmount: 0
+    - type: 4
+      itemType: 3
+      targetAmount: 6000
+      currentAmount: 0
+    fieldSettings:
+      cropGrowthTimeInSeconds: 3
+      baseUpgradeCost: 500
+      upgradeCostMultiplier: 1.5
+      interactionTimeToUpgrade: 1.5
+    fieldAreasToUnlock: []
+    factorySettings:
+      productionTimePerItem: 3
+      overallProductionSpeedMultiplier: 1
+      itemDepositAnimationTime: 0.2
+      factoryRecipes:
+      - factoryOutputType: 3
+        requiredIngredients:
+        - itemType: 0
+          requiredAmount: 4
+        - itemType: 1
+          requiredAmount: 2
+    factoryAreasToUnlock: []
+    stockAndMarketSettings:
+      baseUpgradeCost: 1000
+      upgradeCostMultiplier: 1.5
+      maximumUpgradeLevel: 5
+      startingDisplayCapacity: 4
+      capacityIncreasePerLevel: 1
+      interactionTimeToUpgrade: 1
+      itemTransferDelayToStock: 0.4
+      minDisplayTimeForUI: 6
+      itemTransferDelayToCustomer: 0.5
+      delayBetweenCustomerSpawns: 10
+      maxActiveCustomers: 10
+    stockAreasToUnlock: []
+    playerAndAiSettings:
+      backpackBaseUpgradeCost: 1000
+      backpackCostMultiplier: 1.5
+      backpackMaxLevel: 10
+      startingBackpackCapacity: 10
+      capacityIncreasePerBackpackLevel: 2
+      backpackInteractionTimeToUpgrade: 1.5
+      aiBaseUpgradeCost: 2000
+      aiCostMultiplier: 1.5
+      aiMaxLevel: 10
+      startingAiCapacity: 3
+      capacityIncreasePerAiLevel: 1
+      aiInteractionTimeToUpgrade: 1.5
+      costToHireNewWorker: 1000
+      interactionTimeToHireWorker: 1.5
+      maximumWorkersAllowed: 5
+    unlockMechanics:
+      circleFillTime: 1
+      cashDeductionInterval: 0.08
+      cashDeductedPerInterval: 100
+    generalAreasToUnlock: []
+  - levelPrefab: {fileID: 6115814956240703477, guid: 6f6b62a1aa05b1e42bb64931282c028d, type: 3}
+    levelCompletionReward: 500
+    baseMoneyObjectiveTarget: 100
+    baseHarvestObjectiveTarget: 2
+    baseProduceObjectiveTarget: 1
+    availableItemTypes: 0000000001000000030000000400000002000000
+    minDifferentItemTypes: 1
+    maxDifferentItemTypes: 3
+    minAmountPerItem: 1
+    maxAmountPerItem: 3
+    inspectorObjectives:
+    - type: 0
+      itemType: 0
+      targetAmount: 200
+      currentAmount: 0
+    - type: 0
+      itemType: 4
+      targetAmount: 100
+      currentAmount: 0
+    - type: 2
+      itemType: 1
+      targetAmount: 100
+      currentAmount: 0
+    - type: 1
+      itemType: 2
+      targetAmount: 10
+      currentAmount: 0
+    - type: 3
+      itemType: 2
+      targetAmount: 10
+      currentAmount: 0
+    - type: 4
+      itemType: 2
+      targetAmount: 40000
+      currentAmount: 0
+    fieldSettings:
+      cropGrowthTimeInSeconds: 3
+      baseUpgradeCost: 500
+      upgradeCostMultiplier: 1.5
+      interactionTimeToUpgrade: 1.5
+    fieldAreasToUnlock:
+    - areaName: CarrotField (1)
+      uniqueAreaID: 0
+      requiredCashToUnlock: 2000
+      isUnlockedByStart: 0
+    - areaName: TomatoField
+      uniqueAreaID: 1
+      requiredCashToUnlock: 2000
+      isUnlockedByStart: 0
+    - areaName: TomatoField 1
+      uniqueAreaID: 2
+      requiredCashToUnlock: 2000
+      isUnlockedByStart: 0
+    - areaName: GarlicField
+      uniqueAreaID: 3
+      requiredCashToUnlock: 2000
+      isUnlockedByStart: 0
+    factorySettings:
+      productionTimePerItem: 3
+      overallProductionSpeedMultiplier: 1
+      itemDepositAnimationTime: 0.2
+      factoryRecipes:
+      - factoryOutputType: 3
+        requiredIngredients:
+        - itemType: 0
+          requiredAmount: 4
+        - itemType: 1
+          requiredAmount: 2
+      - factoryOutputType: 2
+        requiredIngredients:
+        - itemType: 4
+          requiredAmount: 4
+        - itemType: 1
+          requiredAmount: 4
+    factoryAreasToUnlock:
+    - areaName: FactoryAreaPotato (1)
+      uniqueAreaID: 4
+      requiredCashToUnlock: 8000
+      isUnlockedByStart: 0
+    - areaName: FactoryAreaOnion (1)
+      uniqueAreaID: 5
+      requiredCashToUnlock: 8000
+      isUnlockedByStart: 0
+    stockAndMarketSettings:
+      baseUpgradeCost: 1000
+      upgradeCostMultiplier: 1.5
+      maximumUpgradeLevel: 5
+      startingDisplayCapacity: 4
+      capacityIncreasePerLevel: 1
+      interactionTimeToUpgrade: 1
+      itemTransferDelayToStock: 0.4
+      minDisplayTimeForUI: 8
+      itemTransferDelayToCustomer: 0.48
+      delayBetweenCustomerSpawns: 10
+      maxActiveCustomers: 5
+    stockAreasToUnlock:
+    - areaName: TomatoStockArea
+      uniqueAreaID: 6
+      requiredCashToUnlock: 5000
+      isUnlockedByStart: 0
+    - areaName: GarlicStockArea
+      uniqueAreaID: 7
+      requiredCashToUnlock: 5000
+      isUnlockedByStart: 0
+    playerAndAiSettings:
+      backpackBaseUpgradeCost: 1000
+      backpackCostMultiplier: 1.5
+      backpackMaxLevel: 10
+      startingBackpackCapacity: 10
+      capacityIncreasePerBackpackLevel: 2
+      backpackInteractionTimeToUpgrade: 1.5
+      aiBaseUpgradeCost: 2000
+      aiCostMultiplier: 1.5
+      aiMaxLevel: 10
+      startingAiCapacity: 3
+      capacityIncreasePerAiLevel: 1
+      aiInteractionTimeToUpgrade: 1.5
+      costToHireNewWorker: 1000
+      interactionTimeToHireWorker: 1.5
+      maximumWorkersAllowed: 5
+    unlockMechanics:
+      circleFillTime: 1
+      cashDeductionInterval: 0.08
+      cashDeductedPerInterval: 100
+    generalAreasToUnlock: []
+  - levelPrefab: {fileID: 6115814956240703477, guid: 99a484deec91b6f4d995324c480b7dbd, type: 3}
+    levelCompletionReward: 500
+    baseMoneyObjectiveTarget: 100
+    baseHarvestObjectiveTarget: 2
+    baseProduceObjectiveTarget: 1
+    availableItemTypes: 0000000001000000020000000300000004000000
+    minDifferentItemTypes: 1
+    maxDifferentItemTypes: 3
+    minAmountPerItem: 1
+    maxAmountPerItem: 3
+    inspectorObjectives:
+    - type: 1
+      itemType: 3
+      targetAmount: 20
+      currentAmount: 0
+    - type: 0
+      itemType: 4
+      targetAmount: 1500
+      currentAmount: 0
+    - type: 2
+      itemType: 1
+      targetAmount: 40
+      currentAmount: 0
+    - type: 1
+      itemType: 2
+      targetAmount: 20
+      currentAmount: 0
+    - type: 3
+      itemType: 2
+      targetAmount: 400
+      currentAmount: 0
+    - type: 4
+      itemType: 2
+      targetAmount: 650000
+      currentAmount: 0
+    fieldSettings:
+      cropGrowthTimeInSeconds: 3
+      baseUpgradeCost: 500
+      upgradeCostMultiplier: 1.5
+      interactionTimeToUpgrade: 1.5
+    fieldAreasToUnlock:
+    - areaName: CarrotField (1)
+      uniqueAreaID: 0
+      requiredCashToUnlock: 4000
+      isUnlockedByStart: 0
+    - areaName: TomatoField
+      uniqueAreaID: 1
+      requiredCashToUnlock: 4000
+      isUnlockedByStart: 0
+    - areaName: TomatoField 1
+      uniqueAreaID: 2
+      requiredCashToUnlock: 4000
+      isUnlockedByStart: 0
+    - areaName: GarlicField
+      uniqueAreaID: 3
+      requiredCashToUnlock: 4000
+      isUnlockedByStart: 0
+    - areaName: GarlicField (1)
+      uniqueAreaID: 4
+      requiredCashToUnlock: 4000
+      isUnlockedByStart: 0
+    factorySettings:
+      productionTimePerItem: 3
+      overallProductionSpeedMultiplier: 1
+      itemDepositAnimationTime: 0.2
+      factoryRecipes: []
+    factoryAreasToUnlock:
+    - areaName: FactoryAreaPotato (1)
+      uniqueAreaID: 5
+      requiredCashToUnlock: 16000
+      isUnlockedByStart: 0
+    - areaName: FactoryAreaOnion (1)
+      uniqueAreaID: 6
+      requiredCashToUnlock: 16000
+      isUnlockedByStart: 0
+    stockAndMarketSettings:
+      baseUpgradeCost: 1000
+      upgradeCostMultiplier: 1.5
+      maximumUpgradeLevel: 5
+      startingDisplayCapacity: 4
+      capacityIncreasePerLevel: 1
+      interactionTimeToUpgrade: 1
+      itemTransferDelayToStock: 1
+      minDisplayTimeForUI: 16
+      itemTransferDelayToCustomer: 0.5
+      delayBetweenCustomerSpawns: 10
+      maxActiveCustomers: 5
+    stockAreasToUnlock:
+    - areaName: GarlicStockArea
+      uniqueAreaID: 7
+      requiredCashToUnlock: 10000
+      isUnlockedByStart: 0
+    - areaName: GarlicStockArea (1)
+      uniqueAreaID: 8
+      requiredCashToUnlock: 10000
+      isUnlockedByStart: 0
+    - areaName: TomatoStockArea (1)
+      uniqueAreaID: 9
+      requiredCashToUnlock: 10000
+      isUnlockedByStart: 0
+    playerAndAiSettings:
+      backpackBaseUpgradeCost: 1000
+      backpackCostMultiplier: 1.5
+      backpackMaxLevel: 10
+      startingBackpackCapacity: 10
+      capacityIncreasePerBackpackLevel: 2
+      backpackInteractionTimeToUpgrade: 1.5
+      aiBaseUpgradeCost: 2000
+      aiCostMultiplier: 1.5
+      aiMaxLevel: 10
+      startingAiCapacity: 3
+      capacityIncreasePerAiLevel: 1
+      aiInteractionTimeToUpgrade: 1.5
+      costToHireNewWorker: 1000
+      interactionTimeToHireWorker: 1.5
+      maximumWorkersAllowed: 5
+    unlockMechanics:
+      circleFillTime: 1
+      cashDeductionInterval: 0.08
+      cashDeductedPerInterval: 100
+    generalAreasToUnlock: []

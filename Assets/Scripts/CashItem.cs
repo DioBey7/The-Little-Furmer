@@ -22,6 +22,7 @@ public class CashItem : MonoBehaviour
         cashValue = value;
         isCollected = false;
         spawnTime = Time.time;
+        gameObject.tag = "Cash"; // magnet pickup untags it; restore when reused from the pool
 
         if (cashCollider != null) cashCollider.enabled = true;
         if (rb != null)
@@ -45,7 +46,7 @@ public class CashItem : MonoBehaviour
                 {
                     StartMagnetTween(playerTarget);
                 }
-            });
+            }).SetLink(gameObject, LinkBehaviour.KillOnDisable);
             return;
         }
 
@@ -81,7 +82,7 @@ public class CashItem : MonoBehaviour
                     Vector3 targetPos = playerTarget.position + (Vector3.up * 1f);
                     transform.position = Vector3.Lerp(startPos, targetPos, t * t);
                 }
-            }).OnComplete(() =>
+            }).SetLink(gameObject, LinkBehaviour.KillOnDisable).OnComplete(() =>
             {
                 if (UiManager.Instance != null) UiManager.Instance.AddCash(cashValue);
                 if (SoundManager.Instance != null) SoundManager.Instance.PlayCashPickupSound();

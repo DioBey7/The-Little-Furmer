@@ -140,7 +140,7 @@ public class ItemCollecting : MonoBehaviour
 
         itemObject.transform.DOLocalJump(localTargetPosition, 1.5f, 1, jumpDuration);
 
-        Sequence scaleSeq = DOTween.Sequence();
+        Sequence scaleSeq = DOTween.Sequence().SetLink(itemObject, LinkBehaviour.KillOnDisable);
         scaleSeq.Append(itemObject.transform.DOScale(new Vector3(prefabScale.x * 0.7f, prefabScale.y * 1.3f, prefabScale.z * 0.7f), jumpDuration * 0.4f));
         scaleSeq.Append(itemObject.transform.DOScale(new Vector3(prefabScale.x * 1.3f, prefabScale.y * 0.7f, prefabScale.z * 1.3f), jumpDuration * 0.3f));
         scaleSeq.Append(itemObject.transform.DOScale(prefabScale, jumpDuration * 0.3f).SetEase(Ease.OutElastic));
@@ -284,7 +284,7 @@ public class ItemCollecting : MonoBehaviour
 
     private void PlayUnloadScaleTween(GameObject obj, Vector3 targetScale, float duration, TweenCallback onComplete)
     {
-        Sequence scaleSeq = DOTween.Sequence();
+        Sequence scaleSeq = DOTween.Sequence().SetLink(obj, LinkBehaviour.KillOnDisable);
         scaleSeq.Append(obj.transform.DOScale(new Vector3(targetScale.x * 0.7f, targetScale.y * 1.3f, targetScale.z * 0.7f), duration * 0.4f));
         scaleSeq.Append(obj.transform.DOScale(new Vector3(targetScale.x * 1.3f, targetScale.y * 0.7f, targetScale.z * 1.3f), duration * 0.3f));
         scaleSeq.Append(obj.transform.DOScale(targetScale, duration * 0.3f).SetEase(Ease.OutElastic));

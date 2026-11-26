@@ -16,8 +16,15 @@ namespace FGUIStarter
         protected override void Awake()
         {
             base.Awake();
-            textRect = GetComponentInChildren<TextMeshProUGUI>().rectTransform;
-            originalTextPos = textRect.anchoredPosition;
+            // Icon-only buttons hide their label, so press the icon down instead (and never throw).
+            Transform icon = transform.Find("Icon");
+            if (icon != null) textRect = icon as RectTransform;
+            else
+            {
+                TextMeshProUGUI label = GetComponentInChildren<TextMeshProUGUI>();
+                if (label != null) textRect = label.rectTransform;
+            }
+            if (textRect != null) originalTextPos = textRect.anchoredPosition;
         }
 
         public override void OnPointerDown(PointerEventData eventData)

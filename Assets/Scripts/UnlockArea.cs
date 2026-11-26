@@ -238,7 +238,9 @@ public class UnlockArea : MonoBehaviour, IInteractableArea
             {
                 deductionTimer = 0f;
 
-                int deduction = Mathf.Min(remainingCost, Mathf.Min(cachedDeductionAmount, availableCash));
+                // Pay at least 1/25 of the total per tick so even big areas unlock in a couple of seconds.
+                int perTick = Mathf.Max(cachedDeductionAmount, Mathf.CeilToInt(totalCost / 25f));
+                int deduction = Mathf.Min(remainingCost, Mathf.Min(perTick, availableCash));
 
                 if (UiManager.Instance != null) UiManager.Instance.SpendCash(deduction);
                 remainingCost -= deduction;

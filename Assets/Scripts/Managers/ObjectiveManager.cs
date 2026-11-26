@@ -45,7 +45,35 @@ public class ObjectiveManager : MonoBehaviour
         }
 
         OnObjectiveUpdated?.Invoke();
+
+        // The save says this level was already finished (the player closed the game on the
+        // Level Completed popup without pressing Continue). Go straight to the next level
+        // instead of showing the popup again on startup.
+        if (AreAllCompleted())
+        {
+            isLevelCompleted = true;
+            StartCoroutine(AdvanceToNextLevelRoutine());
+            return;
+        }
+
         CheckCompletion();
+    }
+
+    private bool AreAllCompleted()
+    {
+        if (currentObjectives == null || currentObjectives.Count == 0) return false;
+        for (int i = 0; i < currentObjectives.Count; i++)
+        {
+            if (!currentObjectives[i].IsCompleted) return false;
+        }
+        return true;
+    }
+
+    private System.Collections.IEnumerator AdvanceToNextLevelRoutine()
+    {
+        // Let the current LoadLevelRoutine finish before loading the next level.
+        yield return null;
+        if (LevelManager.Instance != null) LevelManager.Instance.LoadNextLevelFromUI();
     }
 
     public void ProgressObjective(Level.ObjectiveType type, int amount, ItemType? itemType = null)

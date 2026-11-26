@@ -2575,6 +2575,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 551809304}
   - {fileID: 1837947059}
   - {fileID: 542382314}
   m_Father: {fileID: 1211849146}
@@ -2934,6 +2935,102 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542382313}
+  m_CullTransparentMesh: 1
+--- !u!1 &551809303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 551809304}
+  - component: {fileID: 551809307}
+  - component: {fileID: 551809306}
+  - component: {fileID: 551809305}
+  m_Layer: 0
+  m_Name: MenuCard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &551809304
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551809303}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 427965601}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -180}
+  m_SizeDelta: {x: 540, y: 480}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &551809305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551809303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 1
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!114 &551809306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551809303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.92}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 1d7501232a26f3d4ba68eb61c8ac5dcf, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1.2
+--- !u!222 &551809307
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551809303}
   m_CullTransparentMesh: 1
 --- !u!1 &576366471
 GameObject:
@@ -6182,6 +6279,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194230}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6279,6 +6377,28 @@ MonoBehaviour:
   target: {fileID: 5987421353403193677}
   offset: {x: 0, y: 28, z: -21}
   smoothSpeed: 10
+--- !u!114 &963194230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a55ce57551086947936352389f96af0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 963194227}
+  follow: {fileID: 963194229}
+  player: {fileID: 5987421353403193677}
+  playerAnimator: {fileID: 3817329987022467825}
+  distance: 6.6
+  height: 2.4
+  lookHeight: 0.75
+  degreesPerSecond: 9
+  startAngle: 200
+  sideOffset: -1
 --- !u!1 &969328819
 GameObject:
   m_ObjectHideFlags: 0
@@ -7578,6 +7698,7 @@ MonoBehaviour:
   sfxSlider: {fileID: 869664770}
   bgmSource: {fileID: 1573885961}
   hudGroup: {fileID: 1712285643}
+  showcase: {fileID: 963194230}
   menuTitle: {fileID: 1430958586}
   menuButtons:
   - {fileID: 1837947059}
@@ -7669,7 +7790,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b2214d26930d41a79654c7fa91b556d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75e1cc906f624a8abc417e70e57f0db1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10211,17 +10332,17 @@ MonoBehaviour:
   sfxSource: {fileID: 1573885960}
   menuMusic: {fileID: 8300000, guid: b808d5146c21dca4bb992aace27321cd, type: 3}
   gameMusic: {fileID: 8300000, guid: 347c7cbf0abf681478c5f4a6acd205dc, type: 3}
-  levelUpClip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
-  objectiveCompleteClip: {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
-  customerHappyClip: {fileID: 8300000, guid: 7bd6b897eb5ca4b7d88a205c4a51640c, type: 3}
-  customerSadClip: {fileID: 8300000, guid: df729d213c4be44a9b55cd109f5cd4f9, type: 3}
-  uiClickClip: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
-  unlockAreaClip: {fileID: 8300000, guid: 5039414d94a6e4e70a5ab9e8833e992a, type: 3}
-  buyAiClip: {fileID: 8300000, guid: 046ad25f811796549b66e117ed381fe2, type: 3}
-  upgradeClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
-  produceClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
-  cashPickupClip: {fileID: 8300000, guid: de38efcfa57e31548ab49bd2cb80d9ea, type: 3}
-  itemPickupClip: {fileID: 8300000, guid: d8d877d767f81054a883cba24dced4aa, type: 3}
+  levelUpClip: {fileID: 8300000, guid: 65c45c611d2f9cb44af410211c759375, type: 3}
+  objectiveCompleteClip: {fileID: 8300000, guid: a6bb3686569236c47b8b7e1284f836d6, type: 3}
+  customerHappyClip: {fileID: 8300000, guid: 495fe74373f7b97439a8c2a0a69d1219, type: 3}
+  customerSadClip: {fileID: 8300000, guid: 0039d441e8c37a648ae3f75e4aaa57c2, type: 3}
+  uiClickClip: {fileID: 8300000, guid: f0351075f2fadd342952508d9530bf75, type: 3}
+  unlockAreaClip: {fileID: 8300000, guid: 71c5f242c46007c408d6874e2ef0e6f2, type: 3}
+  buyAiClip: {fileID: 8300000, guid: 7ba56a45d1a55a949a12b52fc8aa676d, type: 3}
+  upgradeClip: {fileID: 8300000, guid: 8271b43649316054197adb0f8358da79, type: 3}
+  produceClip: {fileID: 8300000, guid: caf35ec7d72218545a7b0a2f2d064186, type: 3}
+  cashPickupClip: {fileID: 8300000, guid: 046ad25f811796549b66e117ed381fe2, type: 3}
+  itemPickupClip: {fileID: 8300000, guid: 141c088cd9e8c0446883f6d081486d4e, type: 3}
 --- !u!4 &1573885959
 Transform:
   m_ObjectHideFlags: 0
@@ -13172,6 +13293,11 @@ PrefabInstance:
       addedObject: {fileID: 4292457850346502536}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26e358ed2c187714dabf5cad46856cf4, type: 3}
+--- !u!95 &3817329987022467825 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2441341578568758608, guid: 26e358ed2c187714dabf5cad46856cf4, type: 3}
+  m_PrefabInstance: {fileID: 3817329987022467824}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4292457850346502536
 Transform:
   m_ObjectHideFlags: 0

@@ -876,7 +876,6 @@ MonoBehaviour:
   backPack: {fileID: 8431020893978400557}
   itemSpacingBuffer: 0.1
   backpackInspectorList: []
-  cashPickupSound: {fileID: 8300000, guid: de38efcfa57e31548ab49bd2cb80d9ea, type: 3}
 --- !u!1 &4001249026639887851
 GameObject:
   m_ObjectHideFlags: 0

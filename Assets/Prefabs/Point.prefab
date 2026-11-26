@@ -224,7 +224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetStockArea: {fileID: 0}
   fillCircleImage: {fileID: 8220765110843170943}
-  fillDuration: 3
 --- !u!1 &8985276263132847177
 GameObject:
   m_ObjectHideFlags: 0

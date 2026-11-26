@@ -170,7 +170,7 @@ public class FieldUpgradeArea : MonoBehaviour, IInteractableArea
             else
             {
                 int currentLevel = GetCurrentLevel();
-                costText.text = "Update Field\n" + "$" + GetCurrentCost(currentLevel).ToString();
+                costText.text = "Upgrade Field\n" + "$" + UiManager.FormatMoney(GetCurrentCost(currentLevel));
             }
         }
     }

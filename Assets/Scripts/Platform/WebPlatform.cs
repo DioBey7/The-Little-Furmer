@@ -44,7 +44,8 @@ public class WebPlatform : MonoBehaviour
     // match on height, and shrink the reference height (1920 -> 1440) so the UI is drawn
     // about a third larger than a straight height match. A straight match makes text tiny
     // on a 960x540 itch.io frame (about 0.28x). Raise LandscapeReferenceHeightScale toward
-    // 1 if tall panels get clipped; lower it for bigger UI.
+    // 1 if tall panels get clipped; lower it for bigger UI. The main menu is left at the
+    // full height: its title and buttons are spaced for 1920 and overlap at 1440.
     private const float LandscapeMatch = 1f;
     private const float LandscapeReferenceHeightScale = 0.75f;
     private const float CheckInterval = 0.5f;
@@ -76,7 +77,8 @@ public class WebPlatform : MonoBehaviour
             var (match, reference) = original[scaler];
             bool adapt = landscape && reference.y > reference.x;
             scaler.matchWidthOrHeight = adapt ? LandscapeMatch : match;
-            scaler.referenceResolution = adapt
+            bool enlarge = adapt && !scaler.gameObject.name.Contains("Menu");
+            scaler.referenceResolution = enlarge
                 ? new Vector2(reference.x, reference.y * LandscapeReferenceHeightScale)
                 : reference;
         }

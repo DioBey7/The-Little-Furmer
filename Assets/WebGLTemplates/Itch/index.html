@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>{{{ PRODUCT_NAME }}}</title>
+  <style>
+    /* Itch template: the game keeps the aspect of Player Settings > Resolution
+       (Default Canvas Width/Height) and is letterboxed inside whatever frame
+       itch.io gives it. Set the itch "Viewport dimensions" to the same size. */
+    html, body {
+      margin: 0; padding: 0; width: 100%; height: 100%;
+      overflow: hidden; background: #1f2a1a;
+      overscroll-behavior: none; -webkit-user-select: none; user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #unity-container {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #1f2a1a;
+    }
+    #unity-canvas {
+      display: block; background: #000; outline: none;
+      touch-action: none; -ms-touch-action: none;
+    }
+    #unity-loading {
+      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+      width: min(60%, 320px); text-align: center;
+      font: 600 16px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #f4ecd8;
+    }
+    #unity-loading-title { margin-bottom: 12px; font-size: 20px; }
+    #unity-progress-track { height: 12px; border-radius: 6px; background: rgba(255,255,255,0.18); overflow: hidden; }
+    #unity-progress-fill { height: 100%; width: 0%; border-radius: 6px; background: #f2b632; transition: width 0.2s; }
+    #unity-warning {
+      position: absolute; left: 50%; top: 8px; transform: translateX(-50%);
+      max-width: 90%; display: none; z-index: 10;
+      font: 14px/1.4 system-ui, sans-serif;
+    }
+    #unity-warning div { padding: 8px 12px; margin-bottom: 4px; border-radius: 6px; color: #000; }
+    #unity-fullscreen-button {
+      position: absolute; right: 10px; bottom: 10px; width: 38px; height: 38px;
+      border: 0; border-radius: 8px; padding: 0; cursor: pointer; display: none; z-index: 5;
+      background: rgba(0,0,0,0.45) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5'/%3E%3C/svg%3E") center / 22px no-repeat;
+    }
+    #rotate-hint {
+      position: absolute; left: 0; right: 0; top: 12px; text-align: center; display: none; z-index: 6;
+      font: 600 14px/1.4 system-ui, sans-serif; color: #f4ecd8; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="unity-container">
+    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="unity-loading">
+      <div id="unity-loading-title">{{{ PRODUCT_NAME }}}</div>
+      <div id="unity-progress-track"><div id="unity-progress-fill"></div></div>
+    </div>
+    <div id="unity-warning"></div>
+    <div id="rotate-hint">Turn your phone sideways for a bigger view</div>
+    <button id="unity-fullscreen-button" title="Fullscreen" aria-label="Fullscreen"></button>
+  </div>
+  <script>
+    var ASPECT = {{{ WIDTH }}} / {{{ HEIGHT }}}; // width / height of the game view
+
+    var container = document.querySelector("#unity-container");
+    var canvas = document.querySelector("#unity-canvas");
+    var loading = document.querySelector("#unity-loading");
+    var progressFill = document.querySelector("#unity-progress-fill");
+    var warningBanner = document.querySelector("#unity-warning");
+    var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+    var rotateHint = document.querySelector("#rotate-hint");
+
+    var isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) ||
+                   (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+
+    // Largest rectangle with the game's aspect that fits the frame.
+    function fitCanvas() {
+      var w = container.clientWidth, h = container.clientHeight;
+      if (w / h > ASPECT) { w = Math.floor(h * ASPECT); } else { h = Math.floor(w / ASPECT); }
+      canvas.style.width = w + "px";
+      canvas.style.height = h + "px";
+      rotateHint.style.display =
+        isMobile && (ASPECT > 1) !== (container.clientWidth > container.clientHeight) ? "block" : "none";
+    }
+    window.addEventListener("resize", fitCanvas);
+    document.addEventListener("fullscreenchange", fitCanvas);
+    document.addEventListener("webkitfullscreenchange", fitCanvas);
+    fitCanvas();
+
+    canvas.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+    canvas.addEventListener("pointerdown", function () { canvas.focus(); window.focus(); });
+
+    // Shows warnings in a banner. Errors stay; warnings fade after 5 seconds.
+    function unityShowBanner(msg, type) {
+      function updateBannerVisibility() {
+        warningBanner.style.display = warningBanner.children.length ? "block" : "none";
+      }
+      var div = document.createElement("div");
+      div.innerHTML = msg;
+      warningBanner.appendChild(div);
+      if (type == "error") div.style.background = "#ff8a80";
+      else {
+        if (type == "warning") div.style.background = "#ffe082";
+        setTimeout(function () { warningBanner.removeChild(div); updateBannerVisibility(); }, 5000);
+      }
+      updateBannerVisibility();
+    }
+
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/{{{ LOADER_FILENAME }}}";
+    var config = {
+      dataUrl: buildUrl + "/{{{ DATA_FILENAME }}}",
+      frameworkUrl: buildUrl + "/{{{ FRAMEWORK_FILENAME }}}",
+#if USE_THREADS
+      workerUrl: buildUrl + "/{{{ WORKER_FILENAME }}}",
+#endif
+#if USE_WASM
+      codeUrl: buildUrl + "/{{{ CODE_FILENAME }}}",
+#endif
+#if MEMORY_FILENAME
+      memoryUrl: buildUrl + "/{{{ MEMORY_FILENAME }}}",
+#endif
+#if SYMBOLS_FILENAME
+      symbolsUrl: buildUrl + "/{{{ SYMBOLS_FILENAME }}}",
+#endif
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: {{{ JSON.stringify(COMPANY_NAME) }}},
+      productName: {{{ JSON.stringify(PRODUCT_NAME) }}},
+      productVersion: {{{ JSON.stringify(PRODUCT_VERSION) }}},
+      showBanner: unityShowBanner,
+      // Render resolution cap. High-DPI phones would otherwise render 3D at 3x and overheat.
+      devicePixelRatio: Math.min(window.devicePixelRatio || 1, isMobile ? 1.5 : 2),
+    };
+
+    function canFullscreen() {
+      return !!(container.requestFullscreen || container.webkitRequestFullscreen);
+    }
+    function toggleFullscreen() {
+      // Fullscreen the container (not Unity's canvas) so the letterbox keeps the aspect.
+      if (document.fullscreenElement || document.webkitFullscreenElement) {
+        (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      } else {
+        var req = container.requestFullscreen || container.webkitRequestFullscreen;
+        var p = req.call(container);
+        if (p && p.then && isMobile && screen.orientation && screen.orientation.lock) {
+          p.then(function () {
+            screen.orientation.lock(ASPECT >= 1 ? "landscape" : "portrait").catch(function () {});
+          }).catch(function () {});
+        }
+      }
+    }
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = function () {
+      createUnityInstance(canvas, config, function (progress) {
+        progressFill.style.width = Math.round(100 * progress) + "%";
+      }).then(function (unityInstance) {
+        loading.style.display = "none";
+        if (canFullscreen()) {
+          fullscreenButton.style.display = "block";
+          fullscreenButton.onclick = toggleFullscreen;
+        }
+        canvas.focus();
+      }).catch(function (message) {
+        unityShowBanner(String(message), "error");
+      });
+    };
+    document.body.appendChild(script);
+  </script>
+</body>
+</html>

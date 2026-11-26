@@ -328,14 +328,18 @@ public class UiManager : MonoBehaviour
     {
         if (uiText == null) return;
 
-        string display = isProcessing ? "<color=yellow>PRODUCING...</color>\n" : "";
+        // Recipe list: gold heading, white lines, finished lines in leaf green (outlined text reads on grass).
+        var sb = new System.Text.StringBuilder();
+        sb.Append(isProcessing ? "<color=#B6F25A>MAKING...</color>" : "<color=#FFC93C>RECIPE</color>");
         for (int i = 0; i < requiredIngredients.Count; i++)
         {
             var req = requiredIngredients[i];
             int current = currentDeposited.ContainsKey(req.itemType) ? currentDeposited[req.itemType] : 0;
-            display += $"{req.itemType}: {FormatMoney(current)}/{FormatMoney(req.requiredAmount)}\n";
+            bool done = current >= req.requiredAmount;
+            string col = done ? "#B6F25A" : "#FFFFFF";
+            sb.Append($"\n<color={col}>{req.itemType.ToString().ToUpper()}  {FormatMoney(current)}/{FormatMoney(req.requiredAmount)}</color>");
         }
-        uiText.text = display;
+        uiText.text = sb.ToString();
     }
 
     private string GetFormattedObjectiveText(Level.LevelObjective objective)
@@ -357,8 +361,22 @@ public class UiManager : MonoBehaviour
         string currentAmountText = FormatMoney(objective.currentAmount);
         string targetAmountText = FormatMoney(objective.targetAmount);
 
-        return needsItem ? $"{actionName} {objective.itemType}: \n{currentAmountText}/{targetAmountText}"
-                         : $"{actionName}: \n{currentAmountText}/{targetAmountText}";
+        string title = needsItem ? $"{actionName} {objective.itemType}" : actionName;
+        return $"{title}\n<size=85%><color=#7A5A3A>{currentAmountText} / {targetAmountText}</color></size>";
+    }
+
+    // Optional green progress bar inside an objective row (an Image named "ObjectiveFill").
+    private static void SetObjectiveFill(TMP_Text textComp, Level.LevelObjective objective, bool animate)
+    {
+        if (textComp == null) return;
+        Transform row = textComp.transform.parent;
+        if (row == null) return;
+        Transform fillT = row.Find("ObjectiveFill");
+        if (fillT == null || !fillT.TryGetComponent(out Image fill)) return;
+        float target = objective.targetAmount > 0 ? Mathf.Clamp01((float)objective.currentAmount / objective.targetAmount) : 0f;
+        fill.DOKill();
+        if (animate) fill.DOFillAmount(target, 0.35f).SetEase(Ease.OutQuad).SetUpdate(true);
+        else fill.fillAmount = target;
     }
 
     private void SetupObjectiveUI()
@@ -389,6 +407,7 @@ public class UiManager : MonoBehaviour
             if (textComp != null)
             {
                 textComp.text = GetFormattedObjectiveText(objective);
+                SetObjectiveFill(textComp, objective, false);
                 if (!objectiveTexts.ContainsKey(objective)) objectiveTexts.Add(objective, textComp);
             }
         }
@@ -418,6 +437,7 @@ public class UiManager : MonoBehaviour
                 if (textChanged)
                 {
                     textComp.text = newText;
+                    SetObjectiveFill(textComp, objective, true);
                 }
 
                 if (objective.IsCompleted)

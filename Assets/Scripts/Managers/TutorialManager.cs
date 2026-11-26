@@ -300,11 +300,11 @@ public class TutorialManager : MonoBehaviour
         {
             if (targetUnlockArea != null)
             {
-                TransitionToStep(TutorialStep.UnlockArea, GetInteractableCenter(targetUnlockArea.transform), "STEP ON THE ZONE TO\nUNLOCK THE NEW AREA!");
+                TransitionToStep(TutorialStep.UnlockArea, GetInteractableCenter(targetUnlockArea.transform), "BIG FARM, BIG PLANS! STAND ON A LOCKED PAD\nAND YOUR CASH UNLOCKS IT BIT BY BIT.");
             }
             else if (targetAiBuyArea != null)
             {
-                TransitionToStep(TutorialStep.BuyAI, GetInteractableCenter(targetAiBuyArea.transform), "HIRE AN AI HELPER TO\nAUTOMATE YOUR FARM!");
+                TransitionToStep(TutorialStep.BuyAI, GetInteractableCenter(targetAiBuyArea.transform), "STAND ON THE HELPER PAD TO HIRE A HELPER.\nHELPERS HARVEST AND STOCK CROPS FOR YOU!");
             }
             else CompleteTutorial(false, false);
         }
@@ -312,7 +312,7 @@ public class TutorialManager : MonoBehaviour
         {
             if (upgradeTarget != null)
             {
-                TransitionToStep(TutorialStep.Upgrade, upgradeTarget, "SELL CROPS TO EARN CASH,\nTHEN UPGRADE YOUR CAPACITY!");
+                TransitionToStep(TutorialStep.Upgrade, upgradeTarget, "SPEND CASH ON UPGRADES: A BIGGER BACKPACK\nAND BIGGER STOCKS MEAN MORE MONEY PER TRIP!");
             }
             else CompleteTutorial(false, false);
         }
@@ -325,14 +325,14 @@ public class TutorialManager : MonoBehaviour
     private IEnumerator WelcomeSequenceRoutine()
     {
         currentStep = TutorialStep.Welcome;
-        SetInstructionText("WELCOME TO THE LITTLE FURMER!\nLET'S BUILD YOUR FARM EMPIRE!");
+        SetInstructionText("WELCOME, LITTLE FARMER!\nGROW CROPS, SELL THEM AND GROW YOUR FARM.");
 
         yield return new WaitForSeconds(2.6f);
 
         Vector3 cropCenter = GetCropAreaCenter(targetCropArea);
         string cropName = targetCropArea != null ? targetCropArea.cachedItemType.ToString().ToUpper() + "S" : "CROPS";
 
-        TransitionToCustomPosStep(TutorialStep.Collect, cropCenter, $"WALK OVER THE FIELD TO\nHARVEST {targetCollectAmount} {cropName}! (0/{targetCollectAmount})");
+        TransitionToCustomPosStep(TutorialStep.Collect, cropCenter, $"WALK THROUGH THE FIELD - RIPE CROPS JUMP\nINTO YOUR BACKPACK! ({cropName} 0/{targetCollectAmount})");
     }
 
     private void TransitionToStep(TutorialStep nextStep, Transform targetTransform, string instruction)
@@ -446,17 +446,17 @@ public class TutorialManager : MonoBehaviour
             int clamped = Mathf.Min(collectedCount, targetCollectAmount);
             string cropName = targetCropArea != null ? targetCropArea.cachedItemType.ToString().ToUpper() + "S" : "CROPS";
 
-            UpdateInstructionTextSubtle($"WALK OVER THE FIELD TO\nHARVEST {targetCollectAmount} {cropName}! ({clamped}/{targetCollectAmount})");
+            UpdateInstructionTextSubtle($"WALK THROUGH THE FIELD - RIPE CROPS JUMP\nINTO YOUR BACKPACK! ({cropName} {clamped}/{targetCollectAmount})");
 
             if (collectedCount >= targetCollectAmount)
             {
                 Transform stockSpot = GetStockTargetTransform(targetStockArea);
-                TransitionToStep(TutorialStep.Sell, stockSpot, "STAND ON THE CIRCLE TO\nDROP CROPS AT THE STAND & EARN CASH!");
+                TransitionToStep(TutorialStep.Sell, stockSpot, "NOW STAND ON THE \"SELL HERE\" PAD.\nYOUR CROPS GO ON THE STAND AND EARN CASH!");
             }
         }
         else if (currentStep == TutorialStep.Produce)
         {
-            UpdateInstructionTextSubtle("GREAT! NOW STAND ON THE FACTORY\nINPUT CIRCLE TO PRODUCE GOODS!");
+            UpdateInstructionTextSubtle("GOT THEM! NOW BRING THEM TO THE SHOP'S\nPAD - IT TURNS THEM INTO NEW GOODS.");
         }
     }
 
@@ -470,7 +470,7 @@ public class TutorialManager : MonoBehaviour
             if (targetFactoryArea != null)
             {
                 Transform facSpot = GetFactoryTargetTransform(targetFactoryArea);
-                TransitionToStep(TutorialStep.Produce, facSpot, "COLLECT CROPS & DELIVER THEM\nTO THE FACTORY TO PRODUCE!");
+                TransitionToStep(TutorialStep.Produce, facSpot, "SHOPS MAKE NEW GOODS FROM YOUR CROPS.\nCHECK THE RECIPE, THEN STAND ON ITS PAD.");
             }
             else
             {
@@ -501,7 +501,7 @@ public class TutorialManager : MonoBehaviour
 
         if (targetAiBuyArea != null && targetAiBuyArea.gameObject.activeInHierarchy)
         {
-            TransitionToStep(TutorialStep.BuyAI, GetInteractableCenter(targetAiBuyArea.transform), "AWESOME! NOW HIRE AN AI WORKER\nTO AUTOMATE HARVESTING!");
+            TransitionToStep(TutorialStep.BuyAI, GetInteractableCenter(targetAiBuyArea.transform), "AREA UNLOCKED! NOW HIRE A HELPER -\nTHEY HARVEST AND STOCK CROPS FOR YOU.");
         }
         else
         {
@@ -549,7 +549,7 @@ public class TutorialManager : MonoBehaviour
 
         if (showCompletionMessage)
         {
-            SetInstructionText("TUTORIAL COMPLETED!\nCOMPLETE THE OBJECTIVES ABOVE!");
+            SetInstructionText("YOU'VE GOT IT! FINISH THE OBJECTIVES\nON THE RIGHT TO COMPLETE THE LEVEL.");
             yield return new WaitForSeconds(2.8f);
         }
 

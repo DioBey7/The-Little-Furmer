@@ -128,7 +128,7 @@ public class BackpackUpgradeArea : MonoBehaviour, IInteractableArea
         if (capacityInfoText != null)
         {
             int currentCapacity = cachedBaseCap + (currentLevel * cachedCapPerLevel);
-            capacityInfoText.text = "BAG CAPACITY: " + UiManager.FormatMoney(currentCapacity);
+            capacityInfoText.text = "BAG HOLDS " + UiManager.FormatMoney(currentCapacity);
         }
     }
 

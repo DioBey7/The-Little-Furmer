@@ -118,7 +118,7 @@ public class AiUpgradeArea : MonoBehaviour, IInteractableArea
             int capPerLevel = LevelManager.Instance != null && LevelManager.Instance.CurrentLevelConfig != null ? LevelManager.Instance.CurrentLevelConfig.playerAndAiSettings.capacityIncreasePerAiLevel : 1;
 
             int displayCapacity = baseCap + (currentLevel * capPerLevel);
-            capacityInfoText.text = "AI BAG CAPACITY: " + UiManager.FormatMoney(displayCapacity);
+            capacityInfoText.text = "HELPERS CARRY " + UiManager.FormatMoney(displayCapacity);
         }
     }
 

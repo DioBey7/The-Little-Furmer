@@ -178,6 +178,7 @@ public class MenuManager : MonoBehaviour
     {
         if (SoundManager.Instance != null) SoundManager.Instance.PlayUIClickSound();
         if (isGameActive) Time.timeScale = 0f;
+        SetMenuColumnVisible(false);
 
         if (optionsBackdrop != null)
         {
@@ -217,12 +218,21 @@ public class MenuManager : MonoBehaviour
             optionsPanel.transform.DOScale(Vector3.one * 0.8f, 0.2f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
             {
                 optionsPanel.gameObject.SetActive(false);
+                SetMenuColumnVisible(true);
                 if (isGameActive && (mainMenuPanel == null || !mainMenuPanel.gameObject.activeSelf))
                 {
                     Time.timeScale = 1f;
                 }
             });
         }
+    }
+
+    // The main menu buttons sit under the options card; hide them while it is open.
+    private void SetMenuColumnVisible(bool visible)
+    {
+        if (menuButtons == null || menuButtons.Length == 0 || menuButtons[0] == null) return;
+        Transform column = menuButtons[0].parent;
+        if (column != null) column.gameObject.SetActive(visible);
     }
 
     private void SetMusicVolume(float sliderValue)

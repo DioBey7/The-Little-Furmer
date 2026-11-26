@@ -3031,7 +3031,7 @@ GameObject:
   - component: {fileID: 8932911598356530542}
   - component: {fileID: 7858722629014578945}
   m_Layer: 0
-  m_Name: RequirementsText_card
+  m_Name: RequirementsText_card_small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3046,7 +3046,7 @@ RectTransform:
   m_GameObject: {fileID: 6590315201150919002}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.43999982}
-  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
+  m_LocalScale: {x: 0.88000005, y: 0.88000005, z: 0.88000005}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3144714703485684320}

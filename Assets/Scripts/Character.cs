@@ -38,6 +38,11 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void ClearInteractables()
+    {
+        interactables.Clear();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Cash"))
@@ -118,6 +123,13 @@ public class Character : MonoBehaviour
         {
             for (int i = interactables.Count - 1; i >= 0; i--)
             {
+                // Areas that were destroyed or switched off (e.g. an unlock area after purchase)
+                // never send OnTriggerExit, so drop them here instead of calling into them.
+                if (interactables[i] is Behaviour area && (area == null || !area.isActiveAndEnabled))
+                {
+                    interactables.RemoveAt(i);
+                    continue;
+                }
                 interactables[i].ProcessInteraction(Time.deltaTime, itemCollecting);
             }
         }

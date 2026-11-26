@@ -195,7 +195,7 @@ public class StockArea : MonoBehaviour
         if (itemObject != null)
         {
             itemObject.transform.DOKill();
-            Sequence shrinkSeq = DOTween.Sequence();
+            Sequence shrinkSeq = DOTween.Sequence().SetLink(itemObject, LinkBehaviour.KillOnDisable);
 
             Vector3 currentScale = itemObject.transform.localScale;
             Vector3 currentPos = itemObject.transform.position;
@@ -285,7 +285,7 @@ public class StockArea : MonoBehaviour
             cash.transform.DOJump(targetPosition, jumpPower, 1, jumpDuration).SetEase(Ease.OutQuad);
             cash.transform.DORotate(new Vector3(0f, Random.Range(180f, 360f), 0f), jumpDuration, RotateMode.FastBeyond360);
 
-            Sequence scaleSeq = DOTween.Sequence();
+            Sequence scaleSeq = DOTween.Sequence().SetLink(cash, LinkBehaviour.KillOnDisable);
             scaleSeq.Append(cash.transform.DOScale(targetScale * 1.15f, jumpDuration * 0.5f));
             scaleSeq.Append(cash.transform.DOScale(targetScale, jumpDuration * 0.5f).SetEase(Ease.OutBack));
         }
@@ -307,7 +307,7 @@ public class StockArea : MonoBehaviour
                 for (int j = point.childCount - 1; j >= 0; j--)
                 {
                     Transform child = point.GetChild(j);
-                    child.DOKill(true);
+                    child.DOKill(false);
 
                     if (child.TryGetComponent(out Item itemComp))
                     {

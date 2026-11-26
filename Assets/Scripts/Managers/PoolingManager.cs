@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PoolingManager : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PoolingManager : MonoBehaviour
     private Dictionary<ItemType, int> fieldCapacities = new Dictionary<ItemType, int>();
     private Dictionary<ItemType, GameObject> prefabCache = new Dictionary<ItemType, GameObject>();
     private Dictionary<ItemType, Vector3> scaleCache = new Dictionary<ItemType, Vector3>();
+
+    // Every object currently sitting in a pool. Guards against the same object being
+    // returned twice (which would let GetItem hand it out to two owners).
+    private HashSet<GameObject> pooledObjects = new HashSet<GameObject>();
 
     private void Awake()
     {
@@ -49,7 +54,7 @@ public class PoolingManager : MonoBehaviour
                 {
                     GameObject item = Instantiate(data.itemPrefab, folder);
                     item.SetActive(false);
-                    pools[type].Add(item);
+                    AddToPool(type, item);
                 }
             }
         }
@@ -75,7 +80,7 @@ public class PoolingManager : MonoBehaviour
         {
             GameObject item = Instantiate(prefab, folder);
             item.SetActive(false);
-            pools[type].Add(item);
+            AddToPool(type, item);
         }
     }
 
@@ -92,15 +97,20 @@ public class PoolingManager : MonoBehaviour
             scaleCache[type] = prefab.transform.localScale;
         }
 
-        GameObject item;
+        GameObject item = null;
         Transform folder = parentFolders[type];
 
-        if (pool.Count > 0)
+        // Skip entries that were destroyed while pooled (e.g. parented under a destroyed level).
+        while (pool.Count > 0 && item == null)
         {
             int lastIndex = pool.Count - 1;
             item = pool[lastIndex];
             pool.RemoveAt(lastIndex);
+            pooledObjects.Remove(item);
+        }
 
+        if (item != null)
+        {
             if (item.transform.parent != folder) item.transform.SetParent(folder);
             item.SetActive(true);
         }
@@ -118,7 +128,7 @@ public class PoolingManager : MonoBehaviour
             {
                 GameObject itemTemp = Instantiate(prefab, folder);
                 itemTemp.SetActive(false);
-                pool.Add(itemTemp);
+                AddToPool(type, itemTemp);
             }
         }
 
@@ -129,13 +139,35 @@ public class PoolingManager : MonoBehaviour
     {
         if (obj == null) return;
 
+        // Already pooled: returning it again would put it in the list twice.
+        if (pooledObjects.Contains(obj))
+        {
+            if (obj.activeSelf) obj.SetActive(false);
+            return;
+        }
+
+        // Stop any tween still driving this object so it can't move or re-return it after reuse.
+        obj.transform.DOKill(false);
+
+        if (obj.TryGetComponent(out Item itemComp)) itemComp.isCollected = false;
+
         obj.SetActive(false);
         Transform folder = parentFolders[type];
         if (obj.transform.parent != folder)
         {
             obj.transform.SetParent(folder);
         }
-        pools[type].Add(obj);
+        AddToPool(type, obj);
+    }
+
+    public bool IsPooled(GameObject obj)
+    {
+        return obj != null && pooledObjects.Contains(obj);
+    }
+
+    private void AddToPool(ItemType type, GameObject obj)
+    {
+        if (pooledObjects.Add(obj)) pools[type].Add(obj);
     }
 
     public Transform GetFolder(ItemType type)

@@ -277,7 +277,7 @@ public class FactoryArea : MonoBehaviour
             {
                 if (occ != null)
                 {
-                    occ.transform.DOKill(true);
+                    occ.transform.DOKill(false);
                     if (PoolingManager.Instance != null) PoolingManager.Instance.ReturnItem(outputItemType, occ);
                     else Destroy(occ);
                 }

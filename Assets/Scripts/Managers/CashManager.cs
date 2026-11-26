@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class CashManager : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class CashManager : MonoBehaviour
 
     [SerializeField] private GameObject cashPrefab;
     private List<GameObject> pool;
+    private HashSet<GameObject> pooledObjects = new HashSet<GameObject>();
 
     public int defaultCashValue = 100;
 
@@ -37,20 +39,24 @@ public class CashManager : MonoBehaviour
         {
             GameObject cash = Instantiate(cashPrefab, poolContainer);
             cash.SetActive(false);
-            pool.Add(cash);
+            AddToPool(cash);
         }
     }
 
     public GameObject GetCash(Vector3 position, Quaternion rotation)
     {
-        GameObject cash;
+        GameObject cash = null;
 
-        if (pool.Count > 0)
+        while (pool.Count > 0 && cash == null)
         {
             int lastIndex = pool.Count - 1;
             cash = pool[lastIndex];
             pool.RemoveAt(lastIndex);
+            pooledObjects.Remove(cash);
+        }
 
+        if (cash != null)
+        {
             if (cash.transform.parent != poolContainer) cash.transform.SetParent(poolContainer);
 
             cash.transform.SetPositionAndRotation(position, rotation);
@@ -69,7 +75,7 @@ public class CashManager : MonoBehaviour
             {
                 GameObject cashtemp = Instantiate(cashPrefab, poolContainer);
                 cashtemp.SetActive(false);
-                pool.Add(cashtemp);
+                AddToPool(cashtemp);
             }
         }
 
@@ -80,12 +86,31 @@ public class CashManager : MonoBehaviour
     {
         if (cashObject == null) return;
 
+        // Already pooled: returning it again would let GetCash hand it out twice.
+        if (pooledObjects.Contains(cashObject))
+        {
+            if (cashObject.activeSelf) cashObject.SetActive(false);
+            return;
+        }
+
+        cashObject.transform.DOKill(false);
+
         cashObject.SetActive(false);
         if (cashObject.transform.parent != poolContainer)
         {
             cashObject.transform.SetParent(poolContainer);
         }
-        pool.Add(cashObject);
+        AddToPool(cashObject);
+    }
+
+    public bool IsPooled(GameObject cashObject)
+    {
+        return cashObject != null && pooledObjects.Contains(cashObject);
+    }
+
+    private void AddToPool(GameObject cashObject)
+    {
+        if (pooledObjects.Add(cashObject)) pool.Add(cashObject);
     }
 
     public Transform GetPoolContainer()

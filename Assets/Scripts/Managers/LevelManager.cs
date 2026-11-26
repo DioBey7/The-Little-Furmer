@@ -132,6 +132,9 @@ public class LevelManager : MonoBehaviour
 
             Rigidbody rb = cachedPlayer.GetComponent<Rigidbody>();
             if (rb != null && !rb.isKinematic) rb.velocity = Vector3.zero;
+
+            // The old level's areas are about to be destroyed; drop the player's references to them.
+            if (cachedPlayer.TryGetComponent(out Character character)) character.ClearInteractables();
         }
 
         if (CashManager.Instance != null)
@@ -139,9 +142,10 @@ public class LevelManager : MonoBehaviour
             CashItem[] activeCash = FindObjectsOfType<CashItem>(true);
             for (int i = 0; i < activeCash.Length; i++)
             {
-                if (activeCash[i] != null)
+                // FindObjectsOfType(true) also finds cash that is already pooled; skip it.
+                if (activeCash[i] != null && !CashManager.Instance.IsPooled(activeCash[i].gameObject))
                 {
-                    activeCash[i].transform.DOKill(true);
+                    activeCash[i].transform.DOKill(false);
                     CashManager.Instance.ReturnToPool(activeCash[i].gameObject);
                 }
             }
@@ -152,9 +156,11 @@ public class LevelManager : MonoBehaviour
             Item[] activeItems = FindObjectsOfType<Item>(true);
             for (int i = 0; i < activeItems.Length; i++)
             {
-                if (activeItems[i] != null)
+                // FindObjectsOfType(true) also finds items that are already pooled
+                // (including ones ResetBackpack just returned); skip them.
+                if (activeItems[i] != null && !PoolingManager.Instance.IsPooled(activeItems[i].gameObject))
                 {
-                    activeItems[i].transform.DOKill(true);
+                    activeItems[i].transform.DOKill(false);
                     activeItems[i].isCollected = false;
                     PoolingManager.Instance.ReturnItem(activeItems[i].ItemType, activeItems[i].gameObject);
                 }
@@ -187,11 +193,12 @@ public class LevelManager : MonoBehaviour
             {
                 if (stock != null) stock.ResetStock();
             }
-        }
 
-        if (FieldManager.Instance != null && currentLevelInstance != null)
-        {
-            FieldManager.Instance.InitializeFields(currentLevelInstance.fields);
+            // The old level is destroyed next frame. Deactivate it now so its fields, customers
+            // and areas stop running coroutines and can't pull fresh objects from the pools
+            // into a level that is about to disappear. (Fields of the new level are
+            // initialized in InjectLevelDependencies.)
+            currentLevelInstance.gameObject.SetActive(false);
         }
 
         if (UiManager.Instance != null) UiManager.Instance.ResetProgress();

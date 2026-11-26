@@ -17,14 +17,15 @@ public class MenuShowcase : MonoBehaviour
     [SerializeField] private float distance = 6.6f;
     [SerializeField] private float height = 2.4f;
     [SerializeField] private float lookHeight = 0.75f;
-    [SerializeField] private float degreesPerSecond = 9f;
-    [SerializeField] private float startAngle = 200f;
     [Tooltip("Shifts the framing so the character sits right of centre, leaving room for the title and buttons.")]
-    [SerializeField] private float sideOffset = -1.0f;
+    [SerializeField] private float sideOffset = 0f;
 
     private Quaternion gameRotation;
     private bool showing;
-    private float angle;
+    private float time;
+    private float frontYaw;
+    [SerializeField] private float swayDegrees = 25f;
+    [SerializeField] private float swaySpeed = 0.35f;
     private AnimatorUpdateMode originalUpdateMode;
 
     private void Awake()
@@ -43,7 +44,8 @@ public class MenuShowcase : MonoBehaviour
     {
         if (cam == null || player == null) return;
         showing = true;
-        angle = startAngle;
+        // Start in front of the farmer so the camera looks at their face.
+        frontYaw = player.eulerAngles.y + 180f;
         if (follow != null) follow.enabled = false;
         if (playerAnimator != null)
         {
@@ -56,18 +58,19 @@ public class MenuShowcase : MonoBehaviour
     private void LateUpdate()
     {
         if (!showing) return;
-        angle += degreesPerSecond * Time.unscaledDeltaTime;
+        time += Time.unscaledDeltaTime;
         Place();
     }
 
     private void Place()
     {
         Vector3 focus = player.position + Vector3.up * lookHeight;
-        Quaternion orbit = Quaternion.Euler(0f, angle, 0f);
+        // Gentle sway around the front of the farmer instead of a full circle.
+        float yaw = frontYaw + Mathf.Sin(time * swaySpeed) * swayDegrees;
+        Quaternion orbit = Quaternion.Euler(0f, yaw, 0f);
         Vector3 pos = focus + orbit * new Vector3(0f, 0f, -distance) + Vector3.up * (height - lookHeight);
         cam.transform.position = pos;
         cam.transform.rotation = Quaternion.LookRotation(focus - pos, Vector3.up);
-        // Slide the view sideways so the character sits to the right of the menu.
         cam.transform.position += cam.transform.right * sideOffset;
     }
 

@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1122512659065414235, guid: 7aea350daf3fc2746b0a7f540580f751, type: 3}
       propertyPath: m_Speed
-      value: 2.4
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 1201085881264281818, guid: 7aea350daf3fc2746b0a7f540580f751, type: 3}
       propertyPath: m_fontSize
@@ -43,7 +43,7 @@ PrefabInstance:
     - target: {fileID: 3109744204151575153, guid: 7aea350daf3fc2746b0a7f540580f751, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7829060931adde8489c3e129fec779f2, type: 2}
+      objectReference: {fileID: 9100000, guid: 83e6d3de670910848885bc06a032e94c, type: 2}
     - target: {fileID: 3109744204151575153, guid: 7aea350daf3fc2746b0a7f540580f751, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

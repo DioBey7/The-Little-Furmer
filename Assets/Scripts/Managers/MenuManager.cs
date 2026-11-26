@@ -58,20 +58,18 @@ public class MenuManager : MonoBehaviour
     public RectTransform menuTitle;
     public RectTransform[] menuButtons;
 
-    // In a landscape window the title and buttons sit in a left column and the showcase
-    // camera frames the farmer on the right; in portrait they stay centred.
     private void ApplyMenuLayout()
     {
-        bool landscape = Screen.width > Screen.height;
-        float x = landscape ? 0.28f : 0.5f;
+        // The showcase camera keeps the farmer in the middle of the screen,
+        // so the title sits above the farmer and the buttons below.
         if (menuTitle != null)
         {
-            menuTitle.anchorMin = menuTitle.anchorMax = new Vector2(x, landscape ? 0.7f : 0.72f);
+            menuTitle.anchorMin = menuTitle.anchorMax = new Vector2(0.5f, 0.85f);
             menuTitle.anchoredPosition = Vector2.zero;
         }
         if (menuButtons != null && menuButtons.Length > 0 && menuButtons[0] != null && menuButtons[0].parent is RectTransform column)
         {
-            column.anchorMin = column.anchorMax = new Vector2(x, landscape ? 0.42f : 0.4f);
+            column.anchorMin = column.anchorMax = new Vector2(0.5f, 0.24f);
             column.anchoredPosition = Vector2.zero;
         }
     }

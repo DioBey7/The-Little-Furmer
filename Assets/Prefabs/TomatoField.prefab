@@ -1170,19 +1170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f620110b0238d4ca235927e61bd32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldItemPrefab: {fileID: 3569167037941834667, guid: a8c6258735ed9ea4c96e61b7d235b9c1, type: 3}
-  growthDuration: 4
-  localDirtCounterText: {fileID: 4462834243811621361}
-  dirtPoints:
-  - {fileID: 1125302169085436654}
-  - {fileID: 4226051603535242031}
-  - {fileID: 1817313184231480622}
-  - {fileID: 6605351509203950731}
-  - {fileID: 7094867915001941023}
-  - {fileID: 1231053569606085801}
-  - {fileID: 3457168827916545343}
-  - {fileID: 7425006042430588411}
-  - {fileID: 988305153697852112}
+  cropAreas: []
 --- !u!1 &6947516780980611643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,7 +1430,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: -5660775149628104760, guid: d86e933e6ca983a45ad912f7d7fa9882, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1488,8 +1476,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d86e933e6ca983a45ad912f7d7fa9882, type: 2}
+  m_sharedMaterial: {fileID: -5660775149628104760, guid: d86e933e6ca983a45ad912f7d7fa9882, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1653,7 +1641,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: d35a859b6dd7e984fbb0b46bd45ef997, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+      objectReference: {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
     - target: {fileID: 919132149155446097, guid: d35a859b6dd7e984fbb0b46bd45ef997, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_fence_wood_01_corner_a

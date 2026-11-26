@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+  - {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -202,7 +202,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+  - {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -316,7 +316,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+  - {fileID: 2100000, guid: c061bafbc4736d949b46c49a98a9a52e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -388,9 +388,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a20e8ac429009e4585d2421c1d00597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stockID: StockGaric
+  stockID: 0
   acceptedItemPrefab: {fileID: 8824390435511119997, guid: b5f793e20088c8341b4dddd7a9ea1ef1, type: 3}
-  baseDisplayDuration: 5
   stockNameText: {fileID: 2810611429579516967}
   stockPoints:
   - {fileID: 739639685954259083}
@@ -403,6 +402,7 @@ MonoBehaviour:
   - {fileID: 1417559121250398076}
   stockedItemsInspectorList: []
   cashSpawnPoint: {fileID: 1556512149004316599}
+  fillPoint: {fileID: 0}
 --- !u!65 &2272818899493193755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1051,7 +1051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetStockArea: {fileID: 3920277355814298398}
   fillCircleImage: {fileID: 7625639127893903345}
-  fillDuration: 0.5
 --- !u!1 &8172810416467452620
 GameObject:
   m_ObjectHideFlags: 0

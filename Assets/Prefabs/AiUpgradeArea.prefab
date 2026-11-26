@@ -72,7 +72,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+  - {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -154,16 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df28afd3abcd6734ba8757c1ec85db54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseCost: 1500
-  costMultiplier: 1.5
-  maxLevel: 10
-  aiBaseCapacity: 3
-  aiCapacityPerLevel: 1
   costText: {fileID: 879072802926750252}
   capacityInfoText: {fileID: 1867108683154479003}
   fillCircleImage: {fileID: 8677880732453507899}
-  fillDuration: 1.2
-  upgradeSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
 --- !u!1 &232406404157410020
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +560,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fb90395010f22524794dc0fa4209a0ee, type: 2}
+  - {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -806,7 +799,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+  - {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1137,7 +1130,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b36f9dc428c9443a385361ffe9de4357, type: 2}
+  - {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1220,7 +1213,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+  - {fileID: 2100000, guid: c061bafbc4736d949b46c49a98a9a52e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1400,7 +1393,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 22277f9c8cc710f40b993b2eb44a0126, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 99ffebb5cd4df3448b1747a30fbda4c6, type: 2}
+      objectReference: {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
     - target: {fileID: 919132149155446097, guid: 22277f9c8cc710f40b993b2eb44a0126, type: 3}
       propertyPath: m_Name
       value: rpgpp_lt_sack_02_set

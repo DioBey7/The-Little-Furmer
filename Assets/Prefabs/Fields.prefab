@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cropAreas:
-  - fieldID: 0
+  - autoFieldID: 0
     areaRoot: {fileID: 1800835981247855661}
     fieldItemPrefab: {fileID: 8727512028983973470, guid: 8d769024cb4de7743ac81dd1b4662742, type: 3}
     localDirtCounterText: {fileID: 2144938509352936034}
@@ -56,11 +56,12 @@ MonoBehaviour:
     - {fileID: 3979403211691761647}
     - {fileID: 6070087764088534471}
     - {fileID: 7648188267510586275}
+    cachedUnlockArea: {fileID: 0}
     currentReadyCount: 0
     cachedItemType: 0
     cachedItemTag: 
     isTypeCached: 0
-  - fieldID: 1
+  - autoFieldID: 0
     areaRoot: {fileID: 7559863320617929754}
     fieldItemPrefab: {fileID: 3569167037941834667, guid: a8c6258735ed9ea4c96e61b7d235b9c1, type: 3}
     localDirtCounterText: {fileID: 2555143811452618966}
@@ -69,6 +70,7 @@ MonoBehaviour:
     - {fileID: 3896890750799222734}
     - {fileID: 8220513920691794691}
     - {fileID: 550786865658786572}
+    cachedUnlockArea: {fileID: 0}
     currentReadyCount: 0
     cachedItemType: 0
     cachedItemTag: 
@@ -81,6 +83,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3326734561306443387}
     m_Modifications:
+    - target: {fileID: 4502133827665437833, guid: 96ff3cd5c4db4a74f817bc2f09da9ff0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
     - target: {fileID: 4550860740555687522, guid: 96ff3cd5c4db4a74f817bc2f09da9ff0, type: 3}
       propertyPath: m_Name
       value: TomatoField

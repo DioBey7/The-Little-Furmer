@@ -631,7 +631,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+  - {fileID: 2100000, guid: c061bafbc4736d949b46c49a98a9a52e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -773,13 +773,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a546d2e6cfbf6a468efb8c9927e8f49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stockID: StockPotato1
-  baseCost: 500
-  costMultiplier: 1.5
-  maxLevel: 10
-  fillDuration: 5
-  upgradeSound: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
-  activationRadius: 1.8
   costText: {fileID: 6060335573340813687}
-  speedInfoText: {fileID: 4984813408843884833}
+  infoText: {fileID: 0}
   fillCircleImage: {fileID: 5757668273498093394}

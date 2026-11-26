@@ -1239,7 +1239,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
+  - {fileID: 2100000, guid: 58d53420af384224ea4cfee8973d18cb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1446,19 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f620110b0238d4ca235927e61bd32b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fieldItemPrefab: {fileID: 8824390435511119997, guid: b5f793e20088c8341b4dddd7a9ea1ef1, type: 3}
-  growthDuration: 6
-  localDirtCounterText: {fileID: 3527299465468663178}
-  dirtPoints:
-  - {fileID: 6352539105609803390}
-  - {fileID: 3090232237088548538}
-  - {fileID: 1379464636846976282}
-  - {fileID: 5127544896124130489}
-  - {fileID: 3613285793027225079}
-  - {fileID: 530216724896182302}
-  - {fileID: 4249635174594598635}
-  - {fileID: 2257277581827292399}
-  - {fileID: 3371501048933313738}
+  cropAreas: []
 --- !u!1 &8083437854752901667
 GameObject:
   m_ObjectHideFlags: 0

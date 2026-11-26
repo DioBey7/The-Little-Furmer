@@ -26,6 +26,8 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject objectiveUIPrefab;
     [SerializeField] private Image levelProgressBar;
     [SerializeField] private GameObject levelCompletePopup;
+    [Tooltip("Full-screen dim drawn behind the level complete popup.")]
+    [SerializeField] private CanvasGroup levelCompleteBackdrop;
     [SerializeField] private TMP_Text levelText;
 
     [SerializeField] private RectTransform objectiveContentContainer;
@@ -392,7 +394,7 @@ public class UiManager : MonoBehaviour
         }
 
         if (levelProgressBar != null) levelProgressBar.fillAmount = 0f;
-        if (levelCompletePopup != null) levelCompletePopup.SetActive(false);
+        HideLevelCompletePopup();
 
         Canvas.ForceUpdateCanvases();
         LayoutRebuilder.ForceRebuildLayoutImmediate(objectivePanelParent.GetComponent<RectTransform>());
@@ -469,12 +471,71 @@ public class UiManager : MonoBehaviour
     public void ShowLevelCompletePopup()
     {
         isTransitioning = true;
+
+        // The tutorial banner sits on the same canvas; keep it from drawing over the popup.
+        if (TutorialManager.Instance != null) TutorialManager.Instance.HideForLevelComplete();
+
+        if (levelCompleteBackdrop != null)
+        {
+            levelCompleteBackdrop.DOKill();
+            levelCompleteBackdrop.gameObject.SetActive(true);
+            levelCompleteBackdrop.transform.SetAsLastSibling();
+            levelCompleteBackdrop.alpha = 0f;
+            levelCompleteBackdrop.DOFade(1f, 0.35f).SetUpdate(true);
+        }
+
         if (levelCompletePopup != null)
         {
-            levelCompletePopup.transform.DOKill();
-            levelCompletePopup.transform.localScale = Vector3.zero;
+            Transform popup = levelCompletePopup.transform;
+            popup.DOKill(true);
+            popup.SetAsLastSibling();
+            popup.localScale = Vector3.zero;
             levelCompletePopup.SetActive(true);
-            levelCompletePopup.transform.DOScale(Vector3.one, 0.6f).SetEase(Ease.OutBack).SetUpdate(true);
+
+            Sequence seq = DOTween.Sequence().SetUpdate(true).SetTarget(popup);
+            seq.Append(popup.DOScale(Vector3.one, 0.5f).SetEase(Ease.OutBack));
+
+            TMP_Text title = levelCompletePopup.GetComponentInChildren<TMP_Text>(true);
+            if (title != null)
+            {
+                title.transform.DOKill(true);
+                title.transform.localScale = Vector3.one;
+                seq.Append(title.transform.DOPunchScale(Vector3.one * 0.2f, 0.4f, 6, 0.6f));
+            }
+
+            Button continueButton = levelCompletePopup.GetComponentInChildren<Button>(true);
+            if (continueButton != null)
+            {
+                Transform btn = continueButton.transform;
+                btn.DOKill(true);
+                btn.localScale = Vector3.one;
+                seq.AppendCallback(() =>
+                {
+                    if (btn != null) btn.DOScale(1.06f, 0.6f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+                });
+            }
+        }
+    }
+
+    private void HideLevelCompletePopup()
+    {
+        if (levelCompletePopup != null)
+        {
+            levelCompletePopup.transform.DOKill(true);
+            Button continueButton = levelCompletePopup.GetComponentInChildren<Button>(true);
+            if (continueButton != null)
+            {
+                continueButton.transform.DOKill();
+                continueButton.transform.localScale = Vector3.one;
+            }
+            levelCompletePopup.SetActive(false);
+        }
+
+        if (levelCompleteBackdrop != null)
+        {
+            levelCompleteBackdrop.DOKill();
+            levelCompleteBackdrop.alpha = 0f;
+            levelCompleteBackdrop.gameObject.SetActive(false);
         }
     }
 

@@ -556,6 +556,31 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Hides the arrow and banner at once when the level ends, without marking the tutorial as done.
+    /// Also lets the next level start its own tutorial (InitializeAutoTutorial skips while initialized).
+    /// </summary>
+    public void HideForLevelComplete()
+    {
+        StopAllCoroutines();
+        arrowCoroutine = null;
+        currentStep = TutorialStep.None;
+        isInitialized = false;
+
+        if (arrowPointer != null)
+        {
+            arrowPointer.DOKill();
+            arrowPointer.gameObject.SetActive(false);
+        }
+
+        if (instructionTextObject != null)
+        {
+            instructionTextObject.transform.DOKill();
+            instructionTextObject.transform.localScale = originalTextScale;
+            instructionTextObject.SetActive(false);
+        }
+    }
+
     private void SetInstructionText(string text)
     {
         if (instructionTextObject == null) return;

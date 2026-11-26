@@ -7,6 +7,8 @@ public class MenuManager : MonoBehaviour
 {
     public CanvasGroup mainMenuPanel;
     public CanvasGroup optionsPanel;
+    [Tooltip("Optional full-screen dim shown behind the options panel.")]
+    public CanvasGroup optionsBackdrop;
     public AudioMixer mainMixer;
     public Slider musicSlider;
     public Slider sfxSlider;
@@ -30,6 +32,7 @@ public class MenuManager : MonoBehaviour
         }
 
         if (optionsPanel != null) optionsPanel.gameObject.SetActive(false);
+        if (optionsBackdrop != null) optionsBackdrop.gameObject.SetActive(false);
         if (bgmSource != null && !bgmSource.isPlaying) bgmSource.Play();
 
         SetupAudioSliders();
@@ -97,8 +100,18 @@ public class MenuManager : MonoBehaviour
         if (SoundManager.Instance != null) SoundManager.Instance.PlayUIClickSound();
         if (isGameActive) Time.timeScale = 0f;
 
+        if (optionsBackdrop != null)
+        {
+            optionsBackdrop.DOKill();
+            optionsBackdrop.gameObject.SetActive(true);
+            optionsBackdrop.alpha = 0f;
+            optionsBackdrop.DOFade(1f, 0.25f).SetUpdate(true);
+        }
+
         if (optionsPanel != null)
         {
+            optionsPanel.DOKill();
+            optionsPanel.transform.DOKill();
             optionsPanel.gameObject.SetActive(true);
             optionsPanel.alpha = 0f;
             optionsPanel.transform.localScale = Vector3.one * 0.8f;
@@ -111,8 +124,16 @@ public class MenuManager : MonoBehaviour
     {
         if (SoundManager.Instance != null) SoundManager.Instance.PlayUIClickSound();
 
+        if (optionsBackdrop != null)
+        {
+            optionsBackdrop.DOKill();
+            optionsBackdrop.DOFade(0f, 0.2f).SetUpdate(true).OnComplete(() => optionsBackdrop.gameObject.SetActive(false));
+        }
+
         if (optionsPanel != null)
         {
+            optionsPanel.DOKill();
+            optionsPanel.transform.DOKill();
             optionsPanel.DOFade(0f, 0.2f).SetUpdate(true);
             optionsPanel.transform.DOScale(Vector3.one * 0.8f, 0.2f).SetEase(Ease.InBack).SetUpdate(true).OnComplete(() =>
             {

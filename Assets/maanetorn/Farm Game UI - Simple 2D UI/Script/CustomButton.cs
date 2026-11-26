@@ -43,6 +43,8 @@ namespace FGUIStarter
 
         private void ApplyPressedVisual()
         {
+            // PressFeedback (on the same object) moves every child; avoid a double offset.
+            if (GetComponent<PressFeedback>() != null) return;
             if (textRect != null)
             {
                 float height = ((RectTransform)transform).rect.height;

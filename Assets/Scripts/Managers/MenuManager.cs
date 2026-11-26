@@ -36,6 +36,7 @@ public class MenuManager : MonoBehaviour
         if (bgmSource != null && !bgmSource.isPlaying) bgmSource.Play();
 
         SetupAudioSliders();
+        SetPlayerControl(false); // no walking from swipes behind the main menu
         ApplyMenuLayout();
         PlayMenuIntro();
 
@@ -151,6 +152,7 @@ public class MenuManager : MonoBehaviour
                 mainMenuPanel.gameObject.SetActive(false);
                 isGameActive = true;
                 Time.timeScale = 1f;
+                SetPlayerControl(true);
             });
         }
         else
@@ -178,6 +180,7 @@ public class MenuManager : MonoBehaviour
     {
         if (SoundManager.Instance != null) SoundManager.Instance.PlayUIClickSound();
         if (isGameActive) Time.timeScale = 0f;
+        SetPlayerControl(false);
         SetMenuColumnVisible(false);
 
         if (optionsBackdrop != null)
@@ -222,9 +225,22 @@ public class MenuManager : MonoBehaviour
                 if (isGameActive && (mainMenuPanel == null || !mainMenuPanel.gameObject.activeSelf))
                 {
                     Time.timeScale = 1f;
+                    SetPlayerControl(true);
                 }
             });
         }
+    }
+
+    // Turns the player's touch/mouse steering on or off (menus open on top of the game).
+    private void SetPlayerControl(bool enabled)
+    {
+        Character player = FindObjectOfType<Character>();
+        if (player == null) return;
+        player.enabled = enabled;
+        UnityEngine.AI.NavMeshAgent agent = player.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        if (!enabled && agent != null && agent.isActiveAndEnabled && agent.isOnNavMesh) agent.velocity = Vector3.zero;
+        Animator anim = player.GetComponent<Animator>();
+        if (!enabled && anim != null) anim.SetBool("IsMoving", false);
     }
 
     // The main menu buttons sit under the options card; hide them while it is open.

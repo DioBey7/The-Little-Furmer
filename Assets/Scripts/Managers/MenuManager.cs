@@ -37,7 +37,18 @@ public class MenuManager : MonoBehaviour
 
         SetupAudioSliders();
         PlayMenuIntro();
+
+        // Keep the farm visible behind the main menu but hide the in-game HUD until Play.
+        if (hudGroup != null)
+        {
+            hudGroup.alpha = 0f;
+            hudGroup.interactable = false;
+            hudGroup.blocksRaycasts = false;
+        }
     }
+
+    [Tooltip("Optional CanvasGroup on the in-game HUD canvas; hidden while the main menu is up.")]
+    public CanvasGroup hudGroup;
 
     [Header("Main menu intro (optional)")]
     public RectTransform menuTitle;
@@ -100,6 +111,14 @@ public class MenuManager : MonoBehaviour
         {
             SoundManager.Instance.PlayUIClickSound();
             SoundManager.Instance.SwitchToGameMusic();
+        }
+
+        if (hudGroup != null)
+        {
+            hudGroup.DOKill();
+            hudGroup.interactable = true;
+            hudGroup.blocksRaycasts = true;
+            hudGroup.DOFade(1f, 0.4f).SetDelay(0.2f).SetUpdate(true);
         }
 
         if (mainMenuPanel != null)

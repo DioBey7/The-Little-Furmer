@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 176041516207677410}
   - component: {fileID: 879072802926750252}
   m_Layer: 0
-  m_Name: CostText
+  m_Name: CostText_big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,7 +184,7 @@ RectTransform:
   m_GameObject: {fileID: 232406404157410020}
   m_LocalRotation: {x: -0, y: -0, z: -1, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 8}
-  m_LocalScale: {x: 776.39777, y: 716.33246, z: 100}
+  m_LocalScale: {x: 1125.7769, y: 1038.6821, z: 145}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7322787489534691596}
@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 7274751813759468540}
   - component: {fileID: 1867108683154479003}
   m_Layer: 0
-  m_Name: CapacityText
+  m_Name: CapacityText_big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +355,7 @@ RectTransform:
   m_GameObject: {fileID: 762282956760112107}
   m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: -2.55}
-  m_LocalScale: {x: 1, y: 1, z: 0.66666675}
+  m_LocalScale: {x: 1.45, y: 1.45, z: 0.9666668}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3867619981648214699}

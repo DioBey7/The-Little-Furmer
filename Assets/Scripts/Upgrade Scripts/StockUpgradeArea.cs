@@ -123,7 +123,7 @@ public class StockUpgradeArea : MonoBehaviour, IInteractableArea
         if (infoText != null && targetStockArea != null)
         {
             int capacity = targetStockArea.GetActiveCapacity();
-            infoText.text = $"LEVEL {currentLevel}\nCAPACITY {capacity}";
+            infoText.text = $"STOCK LV.{currentLevel + 1}\nHOLDS {capacity}";
         }
 
         if (costText != null)

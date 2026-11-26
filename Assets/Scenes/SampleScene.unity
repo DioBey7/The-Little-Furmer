@@ -4717,20 +4717,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fxPools:
   - fxName: CashCollect
-    fxPrefab: {fileID: 19826678, guid: c05e92eaee7a00844867e5edc8e0dde1, type: 3}
+    fxPrefab: {fileID: 198360418936956786, guid: 70d6dfe08ec8a1447b4822e95e56918e, type: 3}
     poolSize: 10
+    scale: 0.4
     poolList: []
   - fxName: CropHarvest
-    fxPrefab: {fileID: 19846592, guid: 4924b9135249e0d448901a81875768c6, type: 3}
-    poolSize: 36
+    fxPrefab: {fileID: 198224152589183610, guid: 73dd52c851c98bc469685251a9046eb5, type: 3}
+    poolSize: 20
+    scale: 0.7
     poolList: []
   - fxName: FactoryProduce
     fxPrefab: {fileID: 19839486, guid: 9f6e8efda3a5af24983aa491ef86446f, type: 3}
     poolSize: 10
+    scale: 1
     poolList: []
   - fxName: CropReady
     fxPrefab: {fileID: 4569046032561653572, guid: 448ffbcf71db27749b98c4ed68e15143, type: 3}
     poolSize: 36
+    scale: 1
+    poolList: []
+  - fxName: UnlockArea
+    fxPrefab: {fileID: 19828324, guid: 1c417f6a98778594d92a7a8883ede96e, type: 3}
+    poolSize: 3
+    scale: 1
+    poolList: []
+  - fxName: LevelComplete
+    fxPrefab: {fileID: 19877600, guid: 36bdc02b23d9ca94d93bd715c0cca5c0, type: 3}
+    poolSize: 1
+    scale: 1
+    poolList: []
+  - fxName: LevelUp
+    fxPrefab: {fileID: 2719361716806847732, guid: 01da1ea694d5825418e940e2029741ed, type: 3}
+    poolSize: 3
+    scale: 0.6
     poolList: []
 --- !u!4 &1085516570
 Transform:

@@ -11,6 +11,8 @@ public class FxManager : MonoBehaviour
         public string fxName;
         public ParticleSystem fxPrefab;
         public int poolSize = 10;
+        [Tooltip("Uniform size of this effect. Frequent effects (cash, harvest) read better small.")]
+        public float scale = 1f;
 
         [HideInInspector]
         public List<ParticleSystem> poolList = new List<ParticleSystem>();
@@ -44,6 +46,15 @@ public class FxManager : MonoBehaviour
                 {
                     ParticleSystem obj = Instantiate(pool.fxPrefab, transform);
                     obj.gameObject.SetActive(false);
+                    if (pool.scale > 0f && !Mathf.Approximately(pool.scale, 1f))
+                    {
+                        obj.transform.localScale = Vector3.one * pool.scale;
+                        foreach (var ps in obj.GetComponentsInChildren<ParticleSystem>(true))
+                        {
+                            var psMain = ps.main;
+                            psMain.scalingMode = ParticleSystemScalingMode.Hierarchy;
+                        }
+                    }
 
                     var main = obj.main;
                     main.stopAction = ParticleSystemStopAction.Disable;

@@ -475,6 +475,13 @@ public class UiManager : MonoBehaviour
         // The tutorial banner sits on the same canvas; keep it from drawing over the popup.
         if (TutorialManager.Instance != null) TutorialManager.Instance.HideForLevelComplete();
 
+        // Confetti in the world, in front of the camera, behind the popup.
+        Camera cam = Camera.main;
+        if (FxManager.Instance != null && cam != null)
+        {
+            FxManager.Instance.PlayFx("LevelComplete", cam.transform.position + cam.transform.forward * 12f + Vector3.up * 2f);
+        }
+
         if (levelCompleteBackdrop != null)
         {
             levelCompleteBackdrop.DOKill();

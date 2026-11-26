@@ -36,6 +36,43 @@ public class MenuManager : MonoBehaviour
         if (bgmSource != null && !bgmSource.isPlaying) bgmSource.Play();
 
         SetupAudioSliders();
+        PlayMenuIntro();
+    }
+
+    [Header("Main menu intro (optional)")]
+    public RectTransform menuTitle;
+    public RectTransform[] menuButtons;
+
+    private void PlayMenuIntro()
+    {
+        if (menuTitle != null)
+        {
+            Vector2 home = menuTitle.anchoredPosition;
+            menuTitle.DOKill();
+            menuTitle.anchoredPosition = home + new Vector2(0f, 260f);
+            menuTitle.localScale = Vector3.one * 0.85f;
+            DOTween.Sequence().SetUpdate(true).SetTarget(menuTitle)
+                .Append(menuTitle.DOAnchorPos(home, 0.7f).SetEase(Ease.OutBounce))
+                .Join(menuTitle.DOScale(1f, 0.7f).SetEase(Ease.OutBack))
+                .AppendCallback(() =>
+                {
+                    // Gentle idle bob so the menu doesn't feel frozen.
+                    if (menuTitle != null)
+                        menuTitle.DOAnchorPosY(home.y + 12f, 1.4f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+                });
+        }
+
+        if (menuButtons != null)
+        {
+            for (int i = 0; i < menuButtons.Length; i++)
+            {
+                RectTransform b = menuButtons[i];
+                if (b == null) continue;
+                b.DOKill();
+                b.localScale = Vector3.zero;
+                b.DOScale(1f, 0.45f).SetEase(Ease.OutBack).SetDelay(0.45f + i * 0.12f).SetUpdate(true);
+            }
+        }
     }
 
     private void SetupAudioSliders()
@@ -69,6 +106,7 @@ public class MenuManager : MonoBehaviour
         {
             mainMenuPanel.DOFade(0f, 0.4f).SetUpdate(true).OnComplete(() =>
             {
+                if (menuTitle != null) menuTitle.DOKill();
                 mainMenuPanel.gameObject.SetActive(false);
                 isGameActive = true;
                 Time.timeScale = 1f;

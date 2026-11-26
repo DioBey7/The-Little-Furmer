@@ -100,7 +100,13 @@ public class TutorialManager : MonoBehaviour
 
     private void InitializeAutoTutorial()
     {
-        if (isInitialized) return;
+        if (isInitialized)
+        {
+            // A new level was loaded while the previous level's tutorial was still running:
+            // its targets are gone, so drop it and start fresh for this level.
+            if (LevelManager.Instance == null || LevelManager.Instance.CurrentLevelIndex == currentLevelIndex) return;
+            HideForLevelComplete();
+        }
 
         if (LevelManager.Instance != null)
             currentLevelIndex = LevelManager.Instance.CurrentLevelIndex;
@@ -250,7 +256,8 @@ public class TutorialManager : MonoBehaviour
             }
         }
         if (activeCount > 0) return sum / activeCount;
-        return area.areaRoot != null ? area.areaRoot.position : area.dirtPoints[0].position;
+        if (area.areaRoot != null) return area.areaRoot.position;
+        return area.dirtPoints[0] != null ? area.dirtPoints[0].position : Vector3.zero;
     }
 
     private Transform GetStockTargetTransform(StockArea stock)

@@ -92,7 +92,8 @@ public class UnlockArea : MonoBehaviour, IInteractableArea
                 {
                     if (progressList[i].areaID == this.areaID)
                     {
-                        remainingCost = progressList[i].remainingCost;
+                        // Clamp in case the level's price changed since the save was written.
+                        remainingCost = Mathf.Min(progressList[i].remainingCost, totalCost);
                         break;
                     }
                 }

@@ -231,7 +231,11 @@ public class UiManager : MonoBehaviour
         if (isTransitioning) return;
         currentCash += amount;
 
-        if (GameManager.Instance != null) GameManager.Instance.Data.currentCash = currentCash;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.Data.currentCash = currentCash;
+            GameManager.Instance.SaveData();
+        }
 
         UpdateCashUI();
 

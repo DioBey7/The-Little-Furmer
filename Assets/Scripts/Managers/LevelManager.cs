@@ -228,13 +228,10 @@ public class LevelManager : MonoBehaviour
         if (AiManager.Instance != null && currentLevelInstance != null)
             AiManager.Instance.spawnPoint = currentLevelInstance.aiCharacterSpawnPoint;
 
+        // Cash is not touched here: loading a level also happens on startup, where the saved cash
+        // must be kept. Cash is reset only when a level is completed (GameManager.CompleteLevel).
         if (UiManager.Instance != null)
         {
-            if (UiManager.Instance.CurrentCash > 0)
-            {
-                UiManager.Instance.SpendCash(UiManager.Instance.CurrentCash);
-            }
-
             UiManager.Instance.UpdateLevelText(currentLevelIndex + 1);
         }
 

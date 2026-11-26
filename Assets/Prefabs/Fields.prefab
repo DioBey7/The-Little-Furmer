@@ -91,6 +91,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: TomatoField
       objectReference: {fileID: 0}
+    - target: {fileID: 5647362021197954230, guid: 96ff3cd5c4db4a74f817bc2f09da9ff0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bdff111969a719d4886dfe733391cf22, type: 2}
+    - target: {fileID: 5910227104217592885, guid: 96ff3cd5c4db4a74f817bc2f09da9ff0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0aab83cad164c5f4dbfc728ca1e2e617, type: 2}
+    - target: {fileID: 6191542031144339926, guid: 96ff3cd5c4db4a74f817bc2f09da9ff0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bdff111969a719d4886dfe733391cf22, type: 2}
     - target: {fileID: 7975023789237439654, guid: 96ff3cd5c4db4a74f817bc2f09da9ff0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 19.099998
@@ -131,6 +143,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8141637608004353982, guid: 96ff3cd5c4db4a74f817bc2f09da9ff0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bdff111969a719d4886dfe733391cf22, type: 2}
+    - target: {fileID: 8969037506920257200, guid: 96ff3cd5c4db4a74f817bc2f09da9ff0, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bdff111969a719d4886dfe733391cf22, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

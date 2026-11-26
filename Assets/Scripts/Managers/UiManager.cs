@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CitrioN.Common;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -27,6 +28,10 @@ public class UiManager : MonoBehaviour
     [SerializeField] private GameObject levelCompletePopup;
     [SerializeField] private TMP_Text levelText;
 
+    [SerializeField] private RectTransform objectiveContentContainer;
+    [SerializeField] private TMP_Text toggleButtonIndicatorText;
+    [SerializeField] private CanvasGroup objectiveCanvasGroup;
+
     private int currentCash = 0;
     public int CurrentCash => currentCash;
 
@@ -34,6 +39,7 @@ public class UiManager : MonoBehaviour
     private List<GameObject> notificationPool = new List<GameObject>();
     private Dictionary<Level.LevelObjective, TMP_Text> objectiveTexts = new Dictionary<Level.LevelObjective, TMP_Text>();
 
+    private bool isObjectivePanelOpen = true;
     private bool isTransitioning = false;
     private float notificationVerticalOffset = 60f;
 
@@ -487,5 +493,55 @@ public class UiManager : MonoBehaviour
     {
         ShowLevelCompletePopup();
         ForceCompleteProgressBar();
+    }
+
+    public void ToggleObjectivePanel()
+    {
+        if (objectivePanelParent == null) return;
+        Transform targetPanelToToggle = objectivePanelParent.parent;
+        if (targetPanelToToggle == null) targetPanelToToggle = objectivePanelParent;
+
+        RectTransform panelRect = targetPanelToToggle.GetComponent<RectTransform>();
+        CanvasGroup canvasGroup = targetPanelToToggle.GetComponent<CanvasGroup>();
+
+        if (canvasGroup == null)
+        {
+            canvasGroup = targetPanelToToggle.gameObject.AddComponent<CanvasGroup>();
+        }
+
+        isObjectivePanelOpen = !isObjectivePanelOpen;
+
+        panelRect.DOKill();
+        canvasGroup.DOKill();
+
+        if (isObjectivePanelOpen)
+        {
+            targetPanelToToggle.gameObject.SetActive(true);
+            canvasGroup.interactable = true;
+            canvasGroup.blocksRaycasts = true;
+
+            canvasGroup.DOFade(1f, 0.3f).SetUpdate(true);
+            panelRect.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack).SetUpdate(true);
+
+            if (toggleButtonIndicatorText != null)
+            {
+                toggleButtonIndicatorText.text = "^";
+                toggleButtonIndicatorText.color = Color.white;
+            }
+        }
+        else
+        {
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+
+            canvasGroup.DOFade(0f, 0.25f).SetUpdate(true);
+            panelRect.DOScale(Vector3.zero, 0.25f).SetEase(Ease.InBack).SetUpdate(true);
+
+            if (toggleButtonIndicatorText != null)
+            {
+                toggleButtonIndicatorText.text = "--";
+                toggleButtonIndicatorText.color = Color.white;
+            }
+        }
     }
 }

@@ -177,6 +177,7 @@ public class StockArea : MonoBehaviour
         stockedItemsInspectorList.Add(newData);
 
         SpawnCashPhysically(itemType);
+        if (TutorialManager.Instance != null) TutorialManager.Instance.OnItemSold();
         StartCoroutine(ProcessSoldItem(itemObject, itemType, stockPoint));
     }
 

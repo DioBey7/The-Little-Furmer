@@ -1,0 +1,1850 @@
+RESULT: 80 passed, 1 failed
+Screen 640x480, persistentDataPath C:/Users/WIN11/AppData/LocalLow/TEG/FurmerCombinedTest
+GameManager.resetDataOnStart in scene = False
+--- startup: wait for level 1
+PASS level index 0 loaded on fresh start
+PASS MenuManager present
+levels in masterLevelData: 3
+objectives L1: HarvestItem/Tomato 0/40; SellItem/Carrot 0/25; ProduceItem/Potato 0/5; ServeCustomer/Potato 0/10; EarnMoney/Potato 0/6000; 
+--- screenshot main menu
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\01_main_menu_1920x1080_orig.png [MenuCanvas: scaleFactor 1, match 0,5; GameCanvas: scaleFactor 1, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\01_main_menu_1920x1080_match1.png [MenuCanvas: scaleFactor 0,563, match 1; GameCanvas: scaleFactor 0,563, match 1; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\01_main_menu_960x540_orig.png [MenuCanvas: scaleFactor 0,5, match 0,5; GameCanvas: scaleFactor 0,5, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\01_main_menu_960x540_match1.png [MenuCanvas: scaleFactor 0,281, match 1; GameCanvas: scaleFactor 0,281, match 1; ]
+--- press Play
+PASS timeScale is 1 after PlayGame
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\02_hud_level1_1920x1080_orig.png [MenuCanvas: scaleFactor 1, match 0,5; GameCanvas: scaleFactor 1, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\02_hud_level1_1920x1080_match1.png [MenuCanvas: scaleFactor 0,563, match 1; GameCanvas: scaleFactor 0,563, match 1; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\02_hud_level1_960x540_orig.png [MenuCanvas: scaleFactor 0,5, match 0,5; GameCanvas: scaleFactor 0,5, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\02_hud_level1_960x540_match1.png [MenuCanvas: scaleFactor 0,281, match 1; GameCanvas: scaleFactor 0,281, match 1; ]
+--- options menu
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\03_options_menu_1920x1080_orig.png [MenuCanvas: scaleFactor 1, match 0,5; GameCanvas: scaleFactor 1, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\03_options_menu_1920x1080_match1.png [MenuCanvas: scaleFactor 0,563, match 1; GameCanvas: scaleFactor 0,563, match 1; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\03_options_menu_960x540_orig.png [MenuCanvas: scaleFactor 0,5, match 0,5; GameCanvas: scaleFactor 0,5, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\03_options_menu_960x540_match1.png [MenuCanvas: scaleFactor 0,281, match 1; GameCanvas: scaleFactor 0,281, match 1; ]
+PASS timeScale back to 1 after closing options
+--- pool integrity + double-return guards
+[L1 start] item pools: 98 pooled, 0 active items, 0 destroyed entries
+PASS [L1 start] no duplicate entries in item pools (0)
+PASS [L1 start] no active objects inside item pools (0)
+PASS [L1 start] no in-play item is also in a pool (0)
+PASS [L1 start] pool list and pooled set agree (0)
+[L1 start] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L1 start] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+PASS item Tomato: returned twice -> in pool once (count 1)
+PASS item Tomato: two GetItem calls give two objects
+PASS cash returned twice -> in pool once (count 1)
+PASS two GetCash calls give two objects
+--- let level 1 run 8 s
+[L1 after 8s play] item pools: 92 pooled, 6 active items, 0 destroyed entries
+PASS [L1 after 8s play] no duplicate entries in item pools (0)
+PASS [L1 after 8s play] no active objects inside item pools (0)
+PASS [L1 after 8s play] no in-play item is also in a pool (0)
+PASS [L1 after 8s play] pool list and pooled set agree (0)
+[L1 after 8s play] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L1 after 8s play] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+--- cash + batched save
+PASS Data.currentCash == 50 after AddCash(50)
+PASS save file has currentCash 50 (got 50)
+--- restart #1 (no forced save)
+restart: destroying GameManager (DontDestroyOnLoad) and reloading scene
+PASS level index 0 after restart
+PASS exactly one GameManager after restart
+PASS Data.currentCash kept after restart (got 50)
+PASS UI cash kept after restart (got 50)
+--- complete level index 0 -> 1
+PASS level complete popup shown
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\04_level_complete_1920x1080_orig.png [MenuCanvas: scaleFactor 1, match 0,5; GameCanvas: scaleFactor 1, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\04_level_complete_1920x1080_match1.png [MenuCanvas: scaleFactor 0,563, match 1; GameCanvas: scaleFactor 0,563, match 1; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\04_level_complete_960x540_orig.png [MenuCanvas: scaleFactor 0,5, match 0,5; GameCanvas: scaleFactor 0,5, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\04_level_complete_960x540_match1.png [MenuCanvas: scaleFactor 0,281, match 1; GameCanvas: scaleFactor 0,281, match 1; ]
+PASS level index 1 loaded
+PASS exactly one active Level object (got 1)
+PASS Data.currentLevelIndex == 1
+PASS cash reset to 0 on new level
+PASS save file currentLevelIndex == 1
+objectives L2: HarvestItem/Tomato 0/200; HarvestItem/Garlic 0/100; SellItem/Carrot 0/100; ProduceItem/Onion 0/10; ServeCustomer/Onion 0/10; EarnMoney/Onion 0/40000; 
+[L2 start] item pools: 122 pooled, 0 active items, 0 destroyed entries
+PASS [L2 start] no duplicate entries in item pools (0)
+PASS [L2 start] no active objects inside item pools (0)
+PASS [L2 start] no in-play item is also in a pool (0)
+PASS [L2 start] pool list and pooled set agree (0)
+[L2 start] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L2 start] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+[L2 after 6s play] item pools: 120 pooled, 2 active items, 0 destroyed entries
+PASS [L2 after 6s play] no duplicate entries in item pools (0)
+PASS [L2 after 6s play] no active objects inside item pools (0)
+PASS [L2 after 6s play] no in-play item is also in a pool (0)
+PASS [L2 after 6s play] pool list and pooled set agree (0)
+[L2 after 6s play] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L2 after 6s play] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\05_hud_level2_1920x1080_orig.png [MenuCanvas: scaleFactor 1, match 0,5; GameCanvas: scaleFactor 1, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\05_hud_level2_1920x1080_match1.png [MenuCanvas: scaleFactor 0,563, match 1; GameCanvas: scaleFactor 0,563, match 1; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\05_hud_level2_960x540_orig.png [MenuCanvas: scaleFactor 0,5, match 0,5; GameCanvas: scaleFactor 0,5, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\05_hud_level2_960x540_match1.png [MenuCanvas: scaleFactor 0,281, match 1; GameCanvas: scaleFactor 0,281, match 1; ]
+--- restart #2 on level 2
+restart: destroying GameManager (DontDestroyOnLoad) and reloading scene
+PASS level index 1 after restart
+PASS cash 30 kept after restart on level 2 (data 30, ui 30)
+PASS exactly one GameManager after restart #2
+[L2 after restart] item pools: 114 pooled, 0 active items, 0 destroyed entries
+PASS [L2 after restart] no duplicate entries in item pools (0)
+PASS [L2 after restart] no active objects inside item pools (0)
+PASS [L2 after restart] no in-play item is also in a pool (0)
+PASS [L2 after restart] pool list and pooled set agree (0)
+[L2 after restart] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L2 after restart] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+--- complete level index 1 -> 2
+PASS level complete popup shown
+PASS level index 2 loaded
+PASS exactly one active Level object (got 1)
+PASS Data.currentLevelIndex == 2
+PASS cash reset to 0 on new level
+PASS save file currentLevelIndex == 2
+objectives L3: ProduceItem/Potato 0/20; HarvestItem/Garlic 0/1500; SellItem/Carrot 0/40; ProduceItem/Onion 0/20; ServeCustomer/Onion 0/400; EarnMoney/Onion 0/650000; 
+[L3 start] item pools: 177 pooled, 0 active items, 0 destroyed entries
+PASS [L3 start] no duplicate entries in item pools (0)
+PASS [L3 start] no active objects inside item pools (0)
+PASS [L3 start] no in-play item is also in a pool (0)
+PASS [L3 start] pool list and pooled set agree (0)
+[L3 start] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L3 start] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+[L3 after 6s play] item pools: 175 pooled, 2 active items, 0 destroyed entries
+PASS [L3 after 6s play] no duplicate entries in item pools (0)
+PASS [L3 after 6s play] no active objects inside item pools (0)
+PASS [L3 after 6s play] no in-play item is also in a pool (0)
+PASS [L3 after 6s play] pool list and pooled set agree (0)
+[L3 after 6s play] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L3 after 6s play] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+--- complete level index 2 -> 3
+PASS level complete popup shown
+PASS level index 3 loaded
+PASS exactly one active Level object (got 1)
+PASS Data.currentLevelIndex == 3
+PASS cash reset to 0 on new level
+PASS save file currentLevelIndex == 3
+objectives L4: HarvestItem/Tomato 0/40; SellItem/Carrot 0/25; ProduceItem/Potato 0/5; ServeCustomer/Potato 0/10; EarnMoney/Potato 0/6000; 
+[L4 start] item pools: 185 pooled, 0 active items, 0 destroyed entries
+PASS [L4 start] no duplicate entries in item pools (0)
+PASS [L4 start] no active objects inside item pools (0)
+PASS [L4 start] no in-play item is also in a pool (0)
+PASS [L4 start] pool list and pooled set agree (0)
+[L4 start] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L4 start] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+[L4 after 6s play] item pools: 183 pooled, 2 active items, 0 destroyed entries
+PASS [L4 after 6s play] no duplicate entries in item pools (0)
+PASS [L4 after 6s play] no active objects inside item pools (0)
+PASS [L4 after 6s play] no in-play item is also in a pool (0)
+PASS [L4 after 6s play] pool list and pooled set agree (0)
+[L4 after 6s play] cash pool: 20 pooled, 0 active, 0 destroyed entries
+PASS [L4 after 6s play] cash pool consistent (dup 0, activeInPool 0, activeAlsoPooled 0)
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\06_hud_level4_1920x1080_orig.png [MenuCanvas: scaleFactor 1, match 0,5; GameCanvas: scaleFactor 1, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\06_hud_level4_1920x1080_match1.png [MenuCanvas: scaleFactor 0,563, match 1; GameCanvas: scaleFactor 0,563, match 1; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\06_hud_level4_960x540_orig.png [MenuCanvas: scaleFactor 0,5, match 0,5; GameCanvas: scaleFactor 0,5, match 0,5; ]
+screenshot C:\Users\WIN11\Deneme1\_test-results\screenshots\06_hud_level4_960x540_match1.png [MenuCanvas: scaleFactor 0,281, match 1; GameCanvas: scaleFactor 0,281, match 1; ]
+FAIL no errors/exceptions logged during play (269)
+==== logged errors/exceptions ====
+Error: "SetDestination" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.AI.NavMeshAgent:SetDestination (UnityEngine.Vector3)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:89)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:93)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "SetDestination" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.AI.NavMeshAgent:SetDestination (UnityEngine.Vector3)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:89)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:93)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "SetDestination" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.AI.NavMeshAgent:SetDestination (UnityEngine.Vector3)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:89)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:93)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "SetDestination" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.AI.NavMeshAgent:SetDestination (UnityEngine.Vector3)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:89)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:93)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "SetDestination" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.AI.NavMeshAgent:SetDestination (UnityEngine.Vector3)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:89)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:93)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "SetDestination" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.AI.NavMeshAgent:SetDestination (UnityEngine.Vector3)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:89)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:93)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "SetDestination" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.AI.NavMeshAgent:SetDestination (UnityEngine.Vector3)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:89)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerAI:Initialize (MarketArea,int,UnityEngine.Transform,UnityEngine.Transform,System.Collections.Generic.List`1<CustomerAI/RequestedItem>) (at Assets/Scripts/AI Scripts/CustomerAi.cs:93)
+CustomerManager:SpawnCustomer () (at Assets/Scripts/Managers/CustomerManager.cs:91)
+CustomerManager/<CustomerSpawnRoutine>d__20:MoveNext () (at Assets/Scripts/Managers/CustomerManager.cs:66)
+UnityEngine.MonoBehaviour:StartCoroutine (System.Collections.IEnumerator)
+CustomerManager:SetLevelParameters (LevelConfig) (at Assets/Scripts/Managers/CustomerManager.cs:53)
+LevelManager:InjectLevelDependencies () (at Assets/Scripts/Managers/LevelManager.cs:223)
+LevelManager/<LoadLevelRoutine>d__27:MoveNext () (at Assets/Scripts/Managers/LevelManager.cs:107)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+
+Error: "GetRemainingDistance" can only be called on an active agent that has been placed on a NavMesh.
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+CustomerAI/<CustomerBrainRoutine>d__17:MoveNext () (at Assets/Scripts/AI Scripts/CustomerAi.cs:114)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+

@@ -40,13 +40,17 @@ public class WebPlatform : MonoBehaviour
     }
 #endif
 
-    // The UI was laid out for a 1080x1920 portrait reference. In a landscape window,
-    // matching on height keeps every element at the same size relative to screen height
-    // as on the phone, so nothing grows taller than the screen.
+    // The UI was laid out for a 1080x1920 portrait reference. In a landscape window we
+    // match on height, and shrink the reference height (1920 -> 1440) so the UI is drawn
+    // about a third larger than a straight height match. A straight match makes text tiny
+    // on a 960x540 itch.io frame (about 0.28x). Raise LandscapeReferenceHeightScale toward
+    // 1 if tall panels get clipped; lower it for bigger UI.
     private const float LandscapeMatch = 1f;
+    private const float LandscapeReferenceHeightScale = 0.75f;
     private const float CheckInterval = 0.5f;
 
-    private readonly Dictionary<CanvasScaler, float> originalMatch = new Dictionary<CanvasScaler, float>();
+    private readonly Dictionary<CanvasScaler, (float match, Vector2 reference)> original =
+        new Dictionary<CanvasScaler, (float, Vector2)>();
     private int lastWidth, lastHeight, lastScalerCount = -1;
     private float nextCheck;
 
@@ -68,9 +72,13 @@ public class WebPlatform : MonoBehaviour
             var canvas = scaler.GetComponent<Canvas>();
             if (canvas == null || canvas.renderMode == RenderMode.WorldSpace) continue;
 
-            if (!originalMatch.ContainsKey(scaler)) originalMatch[scaler] = scaler.matchWidthOrHeight;
-            bool portraitReference = scaler.referenceResolution.y > scaler.referenceResolution.x;
-            scaler.matchWidthOrHeight = landscape && portraitReference ? LandscapeMatch : originalMatch[scaler];
+            if (!original.ContainsKey(scaler)) original[scaler] = (scaler.matchWidthOrHeight, scaler.referenceResolution);
+            var (match, reference) = original[scaler];
+            bool adapt = landscape && reference.y > reference.x;
+            scaler.matchWidthOrHeight = adapt ? LandscapeMatch : match;
+            scaler.referenceResolution = adapt
+                ? new Vector2(reference.x, reference.y * LandscapeReferenceHeightScale)
+                : reference;
         }
     }
 }

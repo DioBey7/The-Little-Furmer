@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class Character : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Character : MonoBehaviour
     private Vector2 startInputPos;
     private Vector2 currentInputPos;
     private bool isMoving;
+    private bool isDragging;
     private Vector3 moveDirection;
     private LayerMask borderLayer;
 
@@ -125,13 +127,21 @@ public class Character : MonoBehaviour
 
     private void GetInput()
     {
-        if (Input.GetMouseButtonDown(0))
+        // Pointer drag (touch on phones, mouse on desktop browsers). Mouse input also
+        // covers touch, because Unity simulates the mouse from the first touch.
+        if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
         {
             startInputPos = Input.mousePosition;
-            isMoving = true;
+            isDragging = true;
         }
-        else if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonUp(0) || !Input.GetMouseButton(0))
         {
+            isDragging = false;
+        }
+
+        if (isDragging)
+        {
+            isMoving = true;
             currentInputPos = Input.mousePosition;
             Vector2 delta = currentInputPos - startInputPos;
 
@@ -144,9 +154,57 @@ public class Character : MonoBehaviour
                 Vector2 normalizedDelta = delta.normalized;
                 moveDirection = new Vector3(normalizedDelta.x, 0f, normalizedDelta.y);
             }
+            return;
         }
-        else if (Input.GetMouseButtonUp(0))
+
+        // Keyboard (WASD / arrow keys) for desktop browsers.
+        Vector2 keys = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (keys.sqrMagnitude > 0.01f)
         {
+            isMoving = true;
+            keys = keys.normalized;
+            moveDirection = new Vector3(keys.x, 0f, keys.y);
+            return;
+        }
+
+        isMoving = false;
+        moveDirection = Vector3.zero;
+    }
+
+    // A press that starts on a button or panel should not also move the character.
+    // Only screen-space UI counts: the world-space price/progress canvases on the
+    // ground also have raycasters and must not block walking.
+    private static readonly List<RaycastResult> uiHits = new List<RaycastResult>();
+
+    private static bool IsPointerOverUI()
+    {
+        EventSystem eventSystem = EventSystem.current;
+        if (eventSystem == null) return false;
+
+        Vector2 pressPosition = Input.mousePosition;
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Touch touch = Input.GetTouch(i);
+            if (touch.phase == TouchPhase.Began) { pressPosition = touch.position; break; }
+        }
+
+        PointerEventData pointer = new PointerEventData(eventSystem) { position = pressPosition };
+        uiHits.Clear();
+        eventSystem.RaycastAll(pointer, uiHits);
+        foreach (RaycastResult hit in uiHits)
+        {
+            Canvas canvas = hit.gameObject != null ? hit.gameObject.GetComponentInParent<Canvas>() : null;
+            if (canvas != null && canvas.rootCanvas.renderMode != RenderMode.WorldSpace) return true;
+        }
+        return false;
+    }
+
+    // Releasing the mouse outside the browser window never sends a button-up event.
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus)
+        {
+            isDragging = false;
             isMoving = false;
             moveDirection = Vector3.zero;
         }

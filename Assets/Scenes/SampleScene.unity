@@ -5572,6 +5572,7 @@ GameObject:
   - component: {fileID: 773172811}
   - component: {fileID: 773172814}
   - component: {fileID: 773172813}
+  - component: {fileID: 773172815}
   m_Layer: 5
   m_Name: LevelObjective
   m_TagString: Untagged
@@ -5638,6 +5639,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773172810}
   m_CullTransparentMesh: 1
+--- !u!114 &773172815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 773172810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89320d84a3b1237459cf722998133af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  header: {fileID: 773172813}
+  headerText: {fileID: 948592195}
+  rows: {fileID: 969328820}
+  openSeconds: 6
 --- !u!1 &778519194
 GameObject:
   m_ObjectHideFlags: 0
@@ -7678,7 +7695,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1.000001}
+  m_AnchoredPosition: {x: 0, y: 1}
   m_SizeDelta: {x: -16, y: -6.000002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &948592195
@@ -7972,7 +7989,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.5
-  far clip plane: 160
+  far clip plane: 200
   field of view: 40
   orthographic: 0
   orthographic size: 5
@@ -7999,7 +8016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.420748, y: -0, z: -0, w: 0.90717757}
+  m_LocalRotation: {x: 0.420748, y: 0, z: 0, w: 0.90717757}
   m_LocalPosition: {x: 0.69, y: 13, z: -0.39000034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9989,7 +10006,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 48
+  m_fontSize: 44.75
   m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -12998,7 +13015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgmSource: {fileID: 1573885961}
   sfxSource: {fileID: 1573885960}
-  menuMusic: {fileID: 8300000, guid: bd54dafb10490a043bafccf9dcc1241e, type: 3}
+  menuMusic: {fileID: 8300000, guid: 0ae20049c2b5a6b42b869c28f89dc24a, type: 3}
   gameMusic: {fileID: 8300000, guid: bd55a77e5f901594abb238b6b4714d76, type: 3}
   levelUpClip: {fileID: 8300000, guid: 65c45c611d2f9cb44af410211c759375, type: 3}
   objectiveCompleteClip: {fileID: 8300000, guid: a6bb3686569236c47b8b7e1284f836d6, type: 3}

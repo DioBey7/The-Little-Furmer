@@ -514,6 +514,15 @@ public class UiManager : MonoBehaviour
         if (levelCompletePopup != null)
         {
             Transform popup = levelCompletePopup.transform;
+
+            // Tease what comes next so the player wants to press Continue.
+            Transform sub = popup.Find("SubText");
+            if (sub != null && sub.TryGetComponent(out TMP_Text subText) && LevelManager.Instance != null)
+            {
+                int next = LevelManager.Instance.CurrentLevelIndex + 2;
+                string[] teasers = { "New crops are waiting!", "Hire helpers to farm for you!", "Bigger farm, bigger profits!" };
+                subText.text = $"Level {next} is ready.\n<size=80%>{teasers[(next - 2) % teasers.Length]}</size>";
+            }
             popup.DOKill(true);
             popup.SetAsLastSibling();
             popup.localScale = Vector3.zero;

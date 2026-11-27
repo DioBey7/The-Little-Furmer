@@ -223,7 +223,7 @@ public class CustomerAI : MonoBehaviour
                 newText += req.itemType.ToString() + " x" + req.amount + "\n";
             }
         }
-        headText.text = newText;
+        headText.text = Bubble(newText.TrimEnd('\n'));
     }
 
     private void Leave(bool isSatisfied)
@@ -236,7 +236,7 @@ public class CustomerAI : MonoBehaviour
         {
             if (isSatisfied)
             {
-                headText.text = happyPhrases[Random.Range(0, happyPhrases.Length)];
+                headText.text = Bubble(happyPhrases[Random.Range(0, happyPhrases.Length)]);
                 if (ObjectiveManager.Instance != null)
                 {
                     ObjectiveManager.Instance.ProgressObjective(Level.ObjectiveType.ServeCustomer, 1);
@@ -244,7 +244,7 @@ public class CustomerAI : MonoBehaviour
             }
             else
             {
-                headText.text = angryPhrases[Random.Range(0, angryPhrases.Length)];
+                headText.text = Bubble(angryPhrases[Random.Range(0, angryPhrases.Length)]);
             }
         }
 
@@ -262,5 +262,11 @@ public class CustomerAI : MonoBehaviour
             if (CustomerManager.Instance != null) CustomerManager.Instance.RemoveCustomerFromList(this);
             Destroy(gameObject);
         }
+    }
+
+    // Order text: bold capitals with the outlined font so it reads over grass and other customers.
+    private static string Bubble(string text)
+    {
+        return "<b>" + text.ToUpperInvariant() + "</b>";
     }
 }

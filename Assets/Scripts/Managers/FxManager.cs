@@ -56,12 +56,43 @@ public class FxManager : MonoBehaviour
                         }
                     }
 
+                    // Some library effects (leaves, confetti) are authored as looping emitters.
+                    // A pooled one-shot must never loop, or it keeps playing forever once used.
+                    foreach (var ps in obj.GetComponentsInChildren<ParticleSystem>(true))
+                    {
+                        var m = ps.main;
+                        m.loop = false;
+                        m.playOnAwake = false;
+                    }
+
                     var main = obj.main;
                     main.stopAction = ParticleSystemStopAction.Disable;
 
                     pool.poolList.Add(obj);
                 }
             }
+        }
+    }
+
+    private static float LongestLifetime(ParticleSystem root)
+    {
+        float t = 0f;
+        foreach (var ps in root.GetComponentsInChildren<ParticleSystem>(true))
+        {
+            var m = ps.main;
+            t = Mathf.Max(t, m.startDelay.constantMax + m.duration + m.startLifetime.constantMax);
+        }
+        return Mathf.Min(t, 6f);
+    }
+
+    // Safety net: the pooled effect is always returned, even if a sub-emitter keeps it alive.
+    private System.Collections.IEnumerator DisableAfter(ParticleSystem fx, float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        if (fx != null && fx.gameObject.activeSelf)
+        {
+            fx.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            fx.gameObject.SetActive(false);
         }
     }
 
@@ -72,11 +103,13 @@ public class FxManager : MonoBehaviour
             for (int i = 0; i < pool.poolList.Count; i++)
             {
                 ParticleSystem fx = pool.poolList[i];
-                if (!fx.gameObject.activeInHierarchy)
+                if (fx != null && !fx.gameObject.activeInHierarchy)
                 {
                     fx.transform.position = position;
                     fx.gameObject.SetActive(true);
-                    fx.Play();
+                    fx.Clear(true);
+                    fx.Play(true);
+                    StartCoroutine(DisableAfter(fx, LongestLifetime(fx) + 0.2f));
                     return;
                 }
             }
